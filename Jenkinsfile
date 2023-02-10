@@ -12,6 +12,7 @@ pipeline {
         stage("Deploy") {
             steps {
                 sh "sudo pm2 restart 12jyotirlinga-1966"
+                sh "echo node12jyotirlinga-metaverse.mobiloitte.io"
                 
             }
         }
