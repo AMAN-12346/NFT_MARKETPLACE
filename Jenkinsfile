@@ -11,7 +11,7 @@ pipeline {
         }
         stage("Deploy") {
             steps {
-                sh "sudo pm2 restart pawsome-1944"
+                sh "sudo pm2 restart 12jyotirlinga-1966"
                 
             }
         }
