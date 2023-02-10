@@ -1,0 +1,388 @@
+{
+	"port": 1966,
+	"hostAddress": "http://172.16.6.108:1966",
+	"web": "https://12jyotirlinga-metaverse.mobiloitte.org/reset-password",
+	"driverLink": "",
+	"databaseHost": "localhost",
+	"databasePort": "27017",
+	"databaseName": "jyotirling_database",
+	"jwtsecret": "p2egame@#$%pawsome?byme",
+	"jwtalgo": "HS256",
+	"nodemailer": {
+		"service": "gmail",
+		"email": "fortestingpurpose0077@gmail.com",
+		"password": "bztzdeyoecetitik"
+	},
+	"swaggerDefinition": {
+		"info": {
+			"title": "12jyotirlinga-metaverse-internal-node",
+			"version": "2.0",
+			"description": "12jyotirlinga-metaverse-internal-node API Docs"
+		},
+		"basePath": "/api/v1",   
+		"securityDefinitions": {
+			"tokenauth": {
+				"type": "apiKey",
+				"name": "Authorization",
+				"in": "header"
+			}
+		}
+	},
+	"cloudinary": {
+		"cloud_name": "http-hovr-site",
+		"api_key": "427754951499546",
+		"api_secret": "qu8ls2x0vc5MxetqFDMg7dZWwUA"
+	},
+	"AWS": {
+		"accessKeyId": "AKIA4WJ5ARST5XSQGXWY",
+		"secretAccessKey": "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",
+		"region": "ap-south-1",
+		"smsSecret": "nodesms"
+	},
+	"ipfsProjectDetails": {
+		"projectId": "2DQYbpLriMtttDxE0rnwsDfpHHB",
+		"projectSecret": "9a286e29423b32f5c3519def68e57d30"
+	},
+	"adminAddressLive": "0x712a238cc2F9168fbBB5ED8B23c8AD78a8fc6f09",
+	"adminWalletAddress": "0x04880dF0a706BDFC2d6d069B77A7a3e9c863efDC",
+	"adminPrivateKey": "ec0c7f26610e3ffca0ba3a8dbe3a06112bc641189e32cb08d3083b22a539ed39",
+	"BNB_URL": "https://data-seed-prebsc-1-s1.binance.org:8545/",
+	"contractAddress": "0xb8b4216233332881b0b4a71e6bc1276a81ed917b",
+	"multisendAddress": "0xd9C74Fc48940F1D411d48734e5F9d43773DD30CA",
+	"fcm_serverKey": "AAAAYG6Pp1A:APA91bGEuGUF9-zIND6-06ykj1cVxv6azlOdzwvO-8NSPO-MmSYB6jpr3sbUZWv1dFMcVHpN0Ph7jZ3PWIbGe-nttuH-tzeqxC-fBRttdy71XU4C12QPnjd9xD-Y8Exc5jCc_l9FS9Da",
+	"contractABI": [
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "name",
+			"outputs": [
+				{
+					"name": "",
+					"type": "string"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_spender",
+					"type": "address"
+				},
+				{
+					"name": "_value",
+					"type": "uint256"
+				}
+			],
+			"name": "approve",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "totalSupply",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_from",
+					"type": "address"
+				},
+				{
+					"name": "_to",
+					"type": "address"
+				},
+				{
+					"name": "_value",
+					"type": "uint256"
+				}
+			],
+			"name": "transferFrom",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "decimals",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint8"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_owner",
+					"type": "address"
+				}
+			],
+			"name": "balanceOf",
+			"outputs": [
+				{
+					"name": "balance",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [],
+			"name": "symbol",
+			"outputs": [
+				{
+					"name": "",
+					"type": "string"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"constant": false,
+			"inputs": [
+				{
+					"name": "_to",
+					"type": "address"
+				},
+				{
+					"name": "_value",
+					"type": "uint256"
+				}
+			],
+			"name": "transfer",
+			"outputs": [
+				{
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"payable": false,
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"constant": true,
+			"inputs": [
+				{
+					"name": "_owner",
+					"type": "address"
+				},
+				{
+					"name": "_spender",
+					"type": "address"
+				}
+			],
+			"name": "allowance",
+			"outputs": [
+				{
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"payable": false,
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"payable": true,
+			"stateMutability": "payable",
+			"type": "fallback"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"name": "owner",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"name": "spender",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"name": "value",
+					"type": "uint256"
+				}
+			],
+			"name": "Approval",
+			"type": "event"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"name": "from",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"name": "to",
+					"type": "address"
+				},
+				{
+					"indexed": false,
+					"name": "value",
+					"type": "uint256"
+				}
+			],
+			"name": "Transfer",
+			"type": "event"
+		}
+	],
+	"multisendABI": [
+		{
+			"inputs": [
+				{
+					"internalType": "address[]",
+					"name": "_userList",
+					"type": "address[]"
+				},
+				{
+					"internalType": "uint256[]",
+					"name": "_amountList",
+					"type": "uint256[]"
+				}
+			],
+			"name": "distributeETH",
+			"outputs": [],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_token",
+					"type": "address"
+				},
+				{
+					"internalType": "address[]",
+					"name": "_userList",
+					"type": "address[]"
+				},
+				{
+					"internalType": "uint256[]",
+					"name": "_amountList",
+					"type": "uint256[]"
+				}
+			],
+			"name": "distributeToken",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"stateMutability": "nonpayable",
+			"type": "constructor"
+		},
+		{
+			"anonymous": false,
+			"inputs": [
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "previousOwner",
+					"type": "address"
+				},
+				{
+					"indexed": true,
+					"internalType": "address",
+					"name": "newOwner",
+					"type": "address"
+				}
+			],
+			"name": "OwnershipTransferred",
+			"type": "event"
+		},
+		{
+			"inputs": [],
+			"name": "renounceOwnership",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "newOwner",
+					"type": "address"
+				}
+			],
+			"name": "transferOwnership",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "isOwner",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "owner",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		}
+	]
+}

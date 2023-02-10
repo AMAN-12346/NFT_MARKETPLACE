@@ -1,0 +1,295 @@
+definitions:
+  securitySchemes:
+    tokenauth:
+      type: basic
+      description: bearer auth
+      name: Authorization
+      in: header
+    demouser:
+      type: basic
+ 
+
+  login:
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password:
+         type: string
+
+  forgotPassword:
+    required:
+      - email
+    properties:
+      email:
+        type: string
+
+  resetPassword:
+    required:
+      - newPassword
+    properties:
+      newPassword:
+        type: string
+
+  connectWallet:
+    required:
+      - walletAddress
+    properties:
+      walletAddress:
+        type: string
+
+  blockUnblockUser:
+    required:
+      - _id
+      - status
+    properties:
+      _id:
+        type: string
+      status:
+        type: string
+        description: ACTIVE/BLOCK
+
+  addStaticContent:
+    required:
+      - type
+      - title
+      - description
+    properties:
+      type:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+
+  editStaticContent:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+
+  changeMediaStatus:
+    required:
+      - _id
+      - status
+    properties:
+      _id:
+        type: string
+      status:
+        type: string
+        description: ACTIVE/BLOCK
+
+  addPractice:
+    required:
+      - name
+      - description
+      - circuitId
+      - fee
+      - laps
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      circuitId:
+        type: string
+      fee:
+        type: integer
+      laps:
+        type: integer
+
+  editPractice:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      circuitId:
+        type: string
+      fee:
+        type: integer
+      laps:
+        type: integer
+
+  buyPetstore:
+    required:
+      - petstoreId
+      - dogId
+      - dogProperties
+    properties:
+      petstoreId:
+        type: string
+      dogId:
+        type: string
+      dogProperties:
+        type: string
+          
+
+  createNFT:
+    properties:
+      currentOwnerId: 
+        type: string
+      collectionId:
+        type: string
+      tokenId: 
+        type: string
+      tokenName: 
+        type: string
+      network:
+        type: string
+      coverImage: 
+        type: string
+      title: 
+        type: string
+      uri: 
+        type: string
+      description: 
+        type: string
+      properties: 
+        type: string
+      mediaType: 
+        type: string
+      royalties:
+        type: string
+
+  customizePractice:
+    required:
+      - practiceId
+      - dogId
+    properties:
+      practiceId: 
+        type: string
+      dogId:
+        type: string
+
+  enterEvent:
+    required:
+      - eventId
+    properties:
+      eventId: 
+        type: string
+      dogId:
+        type: string
+
+  assignDriver:
+    required:
+      - eventId
+      - driverName
+    properties:
+      eventId: 
+        type: string
+      driverName:
+        type: string
+
+  editSocialLink:
+    required:
+      - _id
+      - link
+    properties:
+      _id: 
+        type: string
+      link:
+        type: string
+
+  groupChat:
+    required:
+      - groupId
+      - message
+      - senderId
+    properties:
+      groupId:
+        type: string
+      senderId:
+        type: string
+      message:
+        type: string
+      thumbnail:
+        type: string
+      mediaType:
+        type: string
+        description: text/file/emoji       
+
+  createPetItems:
+    required:
+      - name
+      - description
+      - price
+      - image
+      - availableQuantity
+      - categoryId
+      - productType
+      - attributes
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      price:
+        type: string
+      image:
+        type: string
+      categoryId:
+        type: string
+      productType:
+        type: string
+      attributes:
+        type: object
+        properties:
+          Aerodynamics:
+            type: string
+          weight:
+            type: string
+          BMI:
+            type: string
+          ShoeType:
+            type: string
+          Coat:
+            type: string
+          Tail:
+            type: string
+          Nurturing:
+            type: string
+      
+  editPetItems:
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      price:
+        type: string
+      image:
+        type: string
+      categoryId:
+        type: string
+      productType:
+        type: string
+      attributes:
+        type: object
+        properties:
+          Aerodynamics:
+            type: string
+          weight:
+            type: string
+          BMI:
+            type: string
+          ShoeType:
+            type: string
+          Coat:
+            type: string
+          Tail:
+            type: string
+          Nurturing:
+            type: string
+      
