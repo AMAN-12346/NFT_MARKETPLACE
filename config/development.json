@@ -1,6 +1,6 @@
 {
-	"port": 1945,
-	"hostAddress": "localhost:1945",
+	"port": 1966,
+	"hostAddress": "http://172.16.6.108:1966",
 	"web": "https://12jyotirlinga-metaverse.mobiloitte.org/reset-password",
 	"driverLink": "",
 	"databaseHost": "localhost",
@@ -19,7 +19,7 @@
 			"version": "2.0",
 			"description": "12jyotirlinga-metaverse-internal-node API Docs"
 		},
-		"basePath": "/api/v1",
+		"basePath": "/api/v1",   
 		"securityDefinitions": {
 			"tokenauth": {
 				"type": "apiKey",

@@ -17,7 +17,7 @@ import string from "joi/lib/types/string";
 const { getUserPosition,emptyArray } = require('../helper/user');
 
 //*****************************Cron importy function ***********************************/
-import eventCron from '../api/v1/controllers/cron/gameEvent';
+// import eventCron from '../api/v1/controllers/cron/gameEvent';
 //**************************************************************************************/
 
 const app = new Express();
@@ -539,8 +539,7 @@ io.sockets.on("connection", async (socket) => {
 
   socket.on('colorchang', function (count) {
     socket.broadcast.emit('colorchang', socket.id, count);
-  });
-
+  });  
   socket.on('position', function (count) {
     console.log("POSITION: " + count);
     socket.broadcast.emit('position', socket.id, count);
@@ -554,6 +553,7 @@ io.sockets.on("connection", async (socket) => {
     console.log("changeModale: " + count);
     socket.broadcast.emit('changemodale', socket.id, count);
   });
+  
 })
 
 export default ExpressServer;

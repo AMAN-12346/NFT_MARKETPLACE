@@ -1,6 +1,6 @@
 {
-	"port": 1945,
-	"hostAddress": "http://172.16.6.108:1945/",
+	"port": 1966,
+	"hostAddress": "http://172.16.6.108:1966/",
 	"web": "https://12jyotirlinga-metaverse.org/reset-password",
 	"driverLink": "",
 	"databaseHost": "localhost",
