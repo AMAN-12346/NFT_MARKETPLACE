@@ -64,15 +64,15 @@ definitions:
       description:
         type: string
 
-  editStaticContent:
+  editTemple:
     required:
       - _id
     properties:
       _id:
         type: string
-      title:
+      templeName:
         type: string
-      description:
+      templeLength:
         type: string
 
   changeMediaStatus:
@@ -292,4 +292,3 @@ definitions:
             type: string
           Nurturing:
             type: string
-      
