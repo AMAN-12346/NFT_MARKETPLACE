@@ -1,6 +1,7 @@
 module.exports = Object.freeze({
-    ADMIN: 'ADMIN',
-    USER: 'USER',
-    SUBADMIN: 'SUBADMIN',
-    DRIVER: 'DRIVER'
+    ADMIN: 'Admin',
+    SUBADMIN: 'SubAdmin',
+    USER: 'User',
+    ARTIST:'Artist',
+   
 })

@@ -17,7 +17,7 @@ const staticServices = {
     },
 
     staticContentList: async () => {
-        return await staticModel.find({});
+        return await staticModel.find({}).sort({ createdAt: -1 });
     },
 
 }

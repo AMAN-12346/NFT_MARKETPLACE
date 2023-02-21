@@ -4,30 +4,74 @@ import auth from "../../../../helper/auth";
 import upload from '../../../../helper/uploadHandler';
 
 
-
-
 export default Express.Router()
+
+
+    .get('/dashboardSearch', controller.dashboardSearch)
+    .get('/dashboardCount', controller.dashboardCount)
+
+    .get('/userDetails/:walletAddress', controller.userDetails)
+    .post('/userNftDetails', controller.userNftDetails)
+    .post('/userNftDetailsW',controller.userNftDetailsW)
+
+
+
+
+    .get('/userCreatedCount/:_id', controller.userCreatedCount) // done
+    .get('/userBuyAndCreatedList/:_id', controller.userBuyAndCreatedList) //done
+    .get('/userBuyList/:_id', controller.userBuyList) // done
+
     .post('/connectWallet', controller.connectWallet)
-    .get('/upcomingEvents', controller.upcomingEvents)
+    .get('/userList', controller.userList)
+    .get('/viewFeesUser', controller.viewFeesUser)
+    .get('/userLikesCount/:_id', controller.userLikesCount)
+    .get('/userFavourateCount/:_id', controller.userFavourateCount)
+
+    .get('/userOnSaleCount/:_id', controller.userOnSaleCount)
+    .get('/userFollowerCount/:_id', controller.userFollowerCount)
+    .get('/userFollowingCount/:_id', controller.userFollowingCount)
+    .get('/showNftHistory', controller.showNftHistory)
+    .get('/userOwendCount/:_id', controller.userOwendCount) //done
+    .get('/nftSoldCount/:_id', controller.nftSoldCount) //
+    .get('/getUserDetails/:_id', controller.getUserDetails)
+    .get('/topSalers', controller.topSalers)
+    .get('/hotCollections', controller.hotCollections)
+    .get('/getContactUs', controller.getContactUs)
+    .post('/contactUs', controller.contactUs)
+
+    .put('/requestForUnblock', controller.requestForUnblock)
+
+    .put('/userSubscribe', controller.userSubscribe)
+    .post('/userVerifySubscription', controller.userVerifySubscription)
+    .get('/topBuyers', controller.topBuyers)
+    .post('/userRejectSubscription', controller.userRejectSubscription)
 
 
-    .get('/pastEvents', controller.pastEvents)
-    .get('/allPracticeModes', controller.allPracticeModes)
-    .get('/petstores', controller.getPetstores)
-    .get('/socialLinks', controller.getSocialLinks)
-    .get('/driverConfirmation', controller.driverConfirmation)
-    .get('/mediaList', controller.mediaList)
-    .post('/subscribeNewsletter',controller.subscribeNewsletter)
 
     .use(auth.verifyToken)
-    .get('/getProfile', controller.getProfile)
-    .post('/buyPetstore', controller.buyPetstore)
-    .patch('/assignDriver', controller.assignDriver)
-    .get('/getEventDetails',controller.getEventDetails)
-    .post('/likeDislikeEvent',controller.likeDislikeEvent)
-    .post('/likeDislikePetStore',controller.likeDislikePetStore)
+    .get('/profile', controller.profile)
+    .get('/followUnfollow/:userId', controller.followUnfollow)
+    .get('/followingList/:userId', controller.followingList)
+    .get('/followersList/:userId', controller.followersList)
+    .get('/viewKyc', controller.viewKyc)
+    .post('/addWallet', controller.addWallet)
+    .get('/viewWallet', controller.viewWallet)
+    .put('/editWallet', controller.editWallet)
+    .get('/listWallet', controller.listWallet)
+
+    .post('/createOrderReports', controller.createOrderReports)
+    .get('/viewOrderReport', controller.viewOrderReport)
+    .get('/listorderReportedByUser', controller.listorderReportedByUser)
+
+    .get('/listUserToUserReport', controller.listUserToUserReport)
+    .get('/viewReportUser', controller.viewReport)
+
+
 
     .use(upload.uploadFile)
-    .put('/editProfile', controller.editProfile)
-    .post('/uploadFile', controller.uploadFile)
+    .post('/userWallet', controller.userWallet)
+    .put('/updateProfile', controller.updateProfile)
+    .post('/userReports', controller.userReports)
+    .post('/addKYC', controller.addKYC)
+    .post('/editKYC', controller.editKYC)
 

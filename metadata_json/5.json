@@ -1,0 +1,37 @@
+{
+    "id": 1156682309,
+    "name": "#343",
+    "edition": 343,
+    "image": "https://ipfs.io/ipfs/QmV3a66DzVvYrBysCYupZaxMfTET4AYMgGg4nimXBGmDNp",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664503385/343.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Yuxi"
+        },
+        {
+            "trait_type": "Country",
+            "value": "China"
+        },
+        {
+            "trait_type": "State",
+            "value": "Yunnan"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 2303518
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 24.3495
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 102.5432
+        }
+    ]
+}

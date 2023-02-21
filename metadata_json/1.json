@@ -1,0 +1,37 @@
+{
+    "id": 1604300430,
+    "name": "#2955",
+    "edition": 2955,
+    "image": "https://ipfs.io/ipfs/QmaY9qJQgn1gqqLAQdxptkn3TwuBSyptxzLCfnHWenTtQk",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664486777/2955.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Ayacucho"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Peru"
+        },
+        {
+            "trait_type": "State",
+            "value": "Ayacucho"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "South America"
+        },
+        {
+            "trait_type": "Population",
+            "value": 180766
+        },
+        {
+            "trait_type": "Latitude",
+            "value": -13.1631
+        },
+        {
+            "trait_type": "Longitude",
+            "value": -74.2244
+        }
+    ]
+}

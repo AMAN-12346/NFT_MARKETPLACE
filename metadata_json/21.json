@@ -1,0 +1,37 @@
+{
+    "id": 1356501701,
+    "name": "#2774",
+    "edition": 2774,
+    "image": "https://ipfs.io/ipfs/QmPBK6wTHMxruWDp3KtEiKD4Kd6dV9dFxTcJRwJSUZA6XN",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664497666/2774.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Madhyamgram"
+        },
+        {
+            "trait_type": "Country",
+            "value": "India"
+        },
+        {
+            "trait_type": "State",
+            "value": "West Bengal"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 196127
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 22.7
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 88.45
+        }
+    ]
+}

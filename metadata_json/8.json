@@ -1,0 +1,37 @@
+{
+    "id": 1804059567,
+    "name": "#7659",
+    "edition": 7659,
+    "image": "https://ipfs.io/ipfs/QmdmdHVnkbSUHHe5cEGXbt3EC6NKkHsoMKv8s9uUHKjt97",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664490804/7659.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Novohrad-Volynskyi"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Ukraine"
+        },
+        {
+            "trait_type": "State",
+            "value": "Zhytomyrs’ka Oblast’"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Europe"
+        },
+        {
+            "trait_type": "Population",
+            "value": 56288
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 50.5833
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 27.6333
+        }
+    ]
+}

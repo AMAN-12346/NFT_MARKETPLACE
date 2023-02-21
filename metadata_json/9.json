@@ -1,0 +1,37 @@
+{
+    "id": 1840005061,
+    "name": "#1877",
+    "edition": 1877,
+    "image": "https://ipfs.io/ipfs/QmfYQAgYgvQyn3Ru8xSEyffFrSH36GzGEzNfkPN9UQbbfX",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664503789/1877.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Huntsville"
+        },
+        {
+            "trait_type": "Country",
+            "value": "United States"
+        },
+        {
+            "trait_type": "State",
+            "value": "Alabama"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "North America"
+        },
+        {
+            "trait_type": "Population",
+            "value": 319249
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 34.6988
+        },
+        {
+            "trait_type": "Longitude",
+            "value": -86.6412
+        }
+    ]
+}

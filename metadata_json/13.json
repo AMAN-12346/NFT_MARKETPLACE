@@ -1,0 +1,37 @@
+{
+    "id": 1276991229,
+    "name": "#4336",
+    "edition": 4336,
+    "image": "https://ipfs.io/ipfs/QmPsGt7zY7mH26Vqbom7Go3FLg9wbsLLhNcBjBhuSgRnTX",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664472958/4336.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Bremerhaven"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Germany"
+        },
+        {
+            "trait_type": "State",
+            "value": "Bremen"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Europe"
+        },
+        {
+            "trait_type": "Population",
+            "value": 113634
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 53.55
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 8.5833
+        }
+    ]
+}

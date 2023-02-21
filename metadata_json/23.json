@@ -1,0 +1,37 @@
+{
+    "id": 1156064987,
+    "name": "#9341",
+    "edition": 9341,
+    "image": "https://ipfs.io/ipfs/QmaWhqSW16pYx9yiv3PpL3RqDnj7i3EzDUvAhmVA6Vxyow",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664461179/9341.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Qingfengdian"
+        },
+        {
+            "trait_type": "Country",
+            "value": "China"
+        },
+        {
+            "trait_type": "State",
+            "value": "Hebei"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 43703
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 38.6084
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 115.0568
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+{
+    "id": 1840019436,
+    "name": "#3674",
+    "edition": 3674,
+    "image": "https://ipfs.io/ipfs/QmZdfTa7dwPAwds4AyzTSQbF85P5MrpzpYUqF2ANyv5DJn",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664484858/3674.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Carrollton"
+        },
+        {
+            "trait_type": "Country",
+            "value": "United States"
+        },
+        {
+            "trait_type": "State",
+            "value": "Texas"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "North America"
+        },
+        {
+            "trait_type": "Population",
+            "value": 139248
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 32.989
+        },
+        {
+            "trait_type": "Longitude",
+            "value": -96.8999
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+{
+    "id": 1792327949,
+    "name": "#4625",
+    "edition": 4625,
+    "image": "https://ipfs.io/ipfs/QmU1jibyUoVfUnpVXBokkzneWXEcwuWEi4En5YfpA89hEP",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664477824/4625.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Nusaybin"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Turkey"
+        },
+        {
+            "trait_type": "State",
+            "value": "Mardin"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Europe, Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 105856
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 37.0833
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 41.2167
+        }
+    ]
+}

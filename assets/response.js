@@ -3,10 +3,10 @@
  * @export
  * @class Response
  */
- export default class Response {
-	constructor(data = {}, message = "Operation completed successfully") {
-		this.data = data || {};
-		this.message = message;
-		this.code = 200;
+export default class Response {
+	constructor(result = {}, responseMessage = "Operation completed successfully") {
+		this.result = result || {};
+		this.responseMessage = responseMessage;
+		this.statusCode = 200;
 	}
 }

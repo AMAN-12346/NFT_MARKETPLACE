@@ -14,8 +14,13 @@ var nftSchema = new schema(
             type: schema.Types.ObjectId,
             ref: 'user'
         },
+        nftId: {
+            type: schema.Types.ObjectId,
+            ref: 'nft'
+        },
         collectionId: {
-            type: String,
+            type: schema.Types.ObjectId,
+            ref: 'collection'
         },
         receiverId: {
             type: schema.Types.ObjectId,
@@ -29,26 +34,86 @@ var nftSchema = new schema(
             type: schema.Types.ObjectId,
             ref: 'user'
         },
-        mediaFile: { type: String },
-        coverImage: { type: String },
-        title: { type: String },
-        uri: { type: String },
-        mediaType: { type: String },
-        trendingNftCount: {
+        creatorId: {
+            type: schema.Types.ObjectId,
+            ref: 'user'
+        },
+        favouriteUsers: [{
+            type: schema.Types.ObjectId,
+            ref: 'user'
+        }],
+        favouriteCount: {
+            type: Number, default: 0
+        },
+        likesCount: {
+            type: Number, default: 0
+        },
+        contractAddress: {
+            type: String
+        },
+        mediaFile: {
+            type: String
+        },
+        physicalType: { type: String, enum: ["NORMAL", "SINGLE", "MULTIPLE"] },
+        physicalNftImage: [String],
+        recipientWalletAddress: { type: String },
+        recipientBackupWalletAddress: { type: String },
+
+        coverImage: {
+            type: String
+        },
+        itemCategory: {
+            type: String
+        },
+        itemCategory: { type: String },
+        title: {
+            type: String
+        },
+        uri: {
+            type: String
+        },
+        mediaType: {
+            type: String
+        },
+
+        treandingNftCount: {
             type: Number,
             default: 0
         },
-        description: { type: String },
+
+        bidAmount: {
+            type: Number,
+            default: 0
+        },
+        description: {
+            type: String
+        },
         properties: {
             type: String
         },
-        petName: { type: String },
-        tokenId: { type: String },
-        tokenName: { type: String },
-        network: { type: String },
-        royalties: { type: String },
-        likesCount: { type: Number },
+        alternativeTextForNFT: {
+            type: String
+        },
+        tokenId: {
+            type: String
+        },
+        tokenName: {
+            type: String
+        },
+        network: {
+            type: String
+        },
+        royalties: {
+            type: String
+        },
+        likesCount: {
+            type: Number
+        },
         isPlace: {
+            type: Boolean,
+            default: false
+        },
+        isCancel: {
             type: Boolean,
             default: false
         },
@@ -56,7 +121,49 @@ var nftSchema = new schema(
             type: Boolean,
             default: false
         },
-        isReported: { type: Boolean },
+        isCreated: {
+            type: Boolean,
+            default: false
+        },
+        isReported: {
+            type: Boolean
+        },
+        unlockableContent: {
+            type: String
+        },
+        privateImageUrl: {
+            type: String
+        },
+        privateImageUrlType: {
+            type: String
+        },
+        quantity: {
+            type: Number,
+            default: 0,
+        },
+        genQuantity: {
+            type: Number,
+            default: 0,
+        },
+        holdQuantity: {
+            type: Number,
+            default: 0,
+        },
+        placedQuantity: {
+            type: Number,
+            default: 0,
+        },
+        soldQuantity: {
+            type: Number,
+            default: 0
+        },
+        codeType: {
+            type: String, enum: ["BARCODE", "QRCODE"],
+            default: "QRCODE"
+        },
+        barQRcodeLink: {
+            type: String
+        },
         ownerHistory: [{
             userId: {
                 type: schema.Types.ObjectId,
@@ -67,34 +174,20 @@ var nftSchema = new schema(
                 default: new Date().toISOString()
             }
         }],
-        raceCount: { type: Number, default: 0 },
-
-        attributes: {
-            Aerodynamics: { type: Number },
-            weight: { type: String },
-            BMI: { type: String},
-            Age: { type: Date},
-            ShoeType: {type: String },
-            Coat: {type: String},
-            Tail: { type: String},
-            Nurturing: {type: Number },
-            gender:{type:String}
-        },
-
         sellStatus: {
-            type: String,
-            enum: ["PENDING", "SOLD"],
+            type: String, enum: ["PENDING", "SOLD"],
             default: "PENDING"
+        },
+        nftType: {
+            type: String, enum: ["NORMAL", "PHYSICAL"],
+            default: "NORMAL"
         },
         status: {
             type: String,
-            enum: [status.ACTIVE, status.BLOCK, status.DELETE],
-            default: status.ACTIVE
+            enum: ["ACTIVE", "BLOCK", "DELETE"],
+            default: "ACTIVE"
         },
-        usedPowerUps:[{
-            type: schema.Types.ObjectId,
-            ref: 'petstore'
-                }]
+
     },
     options
 );
