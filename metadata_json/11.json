@@ -1,0 +1,37 @@
+{
+    "id": 1170917722,
+    "name": "#5151",
+    "edition": 5151,
+    "image": "https://ipfs.io/ipfs/QmYAn7r8AFQrqhGfggjU3o4Ufy2QnNDBciaG5BTGFh1uiB",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664486153/5151.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Yumbo"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Colombia"
+        },
+        {
+            "trait_type": "State",
+            "value": "Valle del Cauca"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "South America"
+        },
+        {
+            "trait_type": "Population",
+            "value": 92192
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 3.5778
+        },
+        {
+            "trait_type": "Longitude",
+            "value": -76.4944
+        }
+    ]
+}

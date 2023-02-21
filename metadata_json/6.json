@@ -1,0 +1,37 @@
+{
+    "id": 1276015998,
+    "name": "#658",
+    "edition": 658,
+    "image": "https://ipfs.io/ipfs/QmWd17bai4UW5JmYD43VuTooXB136tPkmLvzc3gDxuGyf6",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664464343/658.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Cologne"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Germany"
+        },
+        {
+            "trait_type": "State",
+            "value": "North Rhine-Westphalia"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Europe"
+        },
+        {
+            "trait_type": "Population",
+            "value": 1085664
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 50.9422
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 6.9578
+        }
+    ]
+}

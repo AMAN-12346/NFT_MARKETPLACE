@@ -1,0 +1,37 @@
+{
+    "id": 1218443042,
+    "name": "#8725",
+    "edition": 8725,
+    "image": "https://ipfs.io/ipfs/QmbeWxx8K4pdE49ueAFcWXnanTXfnHcJFczmGxHBabT4wY",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664486076/8725.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Huaquillas"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Ecuador"
+        },
+        {
+            "trait_type": "State",
+            "value": "El Oro"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "South America"
+        },
+        {
+            "trait_type": "Population",
+            "value": 47706
+        },
+        {
+            "trait_type": "Latitude",
+            "value": -3.4803
+        },
+        {
+            "trait_type": "Longitude",
+            "value": -80.2317
+        }
+    ]
+}

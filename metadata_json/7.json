@@ -1,0 +1,37 @@
+{
+    "id": 1458000206,
+    "name": "#6545",
+    "edition": 6545,
+    "image": "https://ipfs.io/ipfs/Qma9rfF52VHcbGDxX6CtsVroV9CMpYD7owguX93qgRoV6p",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664490984/6545.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Putrajaya"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Malaysia"
+        },
+        {
+            "trait_type": "State",
+            "value": "Putrajaya"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 67964
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 2.93
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 101.69
+        }
+    ]
+}

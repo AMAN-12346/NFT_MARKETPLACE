@@ -1,0 +1,37 @@
+{
+    "id": 1818782058,
+    "name": "#6498",
+    "edition": 6498,
+    "image": "https://ipfs.io/ipfs/QmRSB2tBXeRv8RiVfh6UyCZH1BJHmkAgHqR9xqaPeYWpbf",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664482861/6498.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Isna"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Egypt"
+        },
+        {
+            "trait_type": "State",
+            "value": "Qinā"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Africa , Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 68656
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 25.2933
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 32.5564
+        }
+    ]
+}

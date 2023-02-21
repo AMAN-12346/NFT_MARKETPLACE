@@ -11,7 +11,8 @@ pipeline {
         }
         stage("Deploy") {
             steps {
-                sh "sudo pm2 restart pawsome-1944"
+                sh "sudo pm2 restart nftcreation-1965"
+                sh "echo nftcreationmarketplace.mobiloitte.io"
                 
             }
         }

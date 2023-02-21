@@ -1,0 +1,37 @@
+{
+    "id": 1156406202,
+    "name": "#956",
+    "edition": 956,
+    "image": "https://ipfs.io/ipfs/QmNx3G5qwdtqdmK9LCvGfs34rGTpQz9kbecCDUH9tnnLgn",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664494414/956.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Anlu"
+        },
+        {
+            "trait_type": "Country",
+            "value": "China"
+        },
+        {
+            "trait_type": "State",
+            "value": "Hubei"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 720000
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 31.2575
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 113.6783
+        }
+    ]
+}

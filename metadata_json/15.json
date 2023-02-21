@@ -1,0 +1,37 @@
+{
+    "id": 1484802864,
+    "name": "#6216",
+    "edition": 6216,
+    "image": "https://ipfs.io/ipfs/QmZ1nVuSeJS5fv7vSQDNr1FyJenhVDhkxeKZQm5gLGR8iR",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664504152/6216.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Tamazunchale"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Mexico"
+        },
+        {
+            "trait_type": "State",
+            "value": "San Luis Potosí"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "North America"
+        },
+        {
+            "trait_type": "Population",
+            "value": 72685
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 21.2667
+        },
+        {
+            "trait_type": "Longitude",
+            "value": -98.7833
+        }
+    ]
+}

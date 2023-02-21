@@ -1,0 +1,37 @@
+{
+    "id": 1566025302,
+    "name": "#5122",
+    "edition": 5122,
+    "image": "https://ipfs.io/ipfs/QmS7HBUV3Kd17Pyv4e5erwKxRKzaB6aCJzg3j4PdaSK643",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664459727/5122.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Wukari"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Nigeria"
+        },
+        {
+            "trait_type": "State",
+            "value": "Taraba"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Africa"
+        },
+        {
+            "trait_type": "Population",
+            "value": 92933
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 7.8704
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 9.78
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+{
+    "id": 1356174802,
+    "name": "#3151",
+    "edition": 3151,
+    "image": "https://ipfs.io/ipfs/QmSG9H4cH17nh8f1oUMXbwowwwuGKJyJcSZU2M33hRCCe9",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664475156/3151.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Chandannagar"
+        },
+        {
+            "trait_type": "Country",
+            "value": "India"
+        },
+        {
+            "trait_type": "State",
+            "value": "West Bengal"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 166867
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 22.8667
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 88.3833
+        }
+    ]
+}

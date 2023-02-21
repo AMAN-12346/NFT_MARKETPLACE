@@ -1,0 +1,37 @@
+{
+    "id": 1320227536,
+    "name": "#8916",
+    "edition": 8916,
+    "image": "https://ipfs.io/ipfs/QmeQueQ1vM6DHwFRYBUcnzcFfWpVdVkBMFjqPpSEdboNYn",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664489356/8916.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Fray Bartolome de Las Casas"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Guatemala"
+        },
+        {
+            "trait_type": "State",
+            "value": "Alta Verapaz"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "North America"
+        },
+        {
+            "trait_type": "Population",
+            "value": 46468
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 15.8456
+        },
+        {
+            "trait_type": "Longitude",
+            "value": -89.8658
+        }
+    ]
+}

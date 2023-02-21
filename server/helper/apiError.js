@@ -4,7 +4,7 @@ class apiError extends Error {
 	constructor(responseCode, responseMessage) {
 		super(responseMessage);
 		this.responseCode = responseCode;
-		this.responseMessage = responseMessage ? responseMessage : error[responseCode] || 'internal server error';
+		this.responseMessage = responseMessage ? responseMessage : error[responseCode] || 'Internal server error';
 		this.isApiError = true;
 	}
 
@@ -19,9 +19,6 @@ class apiError extends Error {
 	}
 	static notFound(msg) {
 		return new apiError(404, msg);
-	}
-	static notAllowed(msg) {
-		return new apiError(405, msg);
 	}
 	static conflict(msg) {
 		return new apiError(409, msg);

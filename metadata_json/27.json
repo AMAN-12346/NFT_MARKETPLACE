@@ -1,0 +1,37 @@
+{
+    "id": 1586141444,
+    "name": "#1034",
+    "edition": 1034,
+    "image": "https://ipfs.io/ipfs/QmXLijPxxSSn7QzHcC3XFxDrojAwPbPBSHFqKkHG4LePYT",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664498607/1034.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Sialkot City"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Pakistan"
+        },
+        {
+            "trait_type": "State",
+            "value": "Punjab"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 655852
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 32.5
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 74.5333
+        }
+    ]
+}

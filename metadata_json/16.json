@@ -1,0 +1,37 @@
+{
+    "id": 1156184822,
+    "name": "#64",
+    "edition": 64,
+    "image": "https://ipfs.io/ipfs/QmWt8dASaNpNm5tjvW9MnWJ6QULdFRgR6cQQ4dJTAMooiE",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664459213/64.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Zhumadian"
+        },
+        {
+            "trait_type": "Country",
+            "value": "China"
+        },
+        {
+            "trait_type": "State",
+            "value": "Henan"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 7640000
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 32.9773
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 114.0253
+        }
+    ]
+}

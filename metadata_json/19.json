@@ -1,0 +1,37 @@
+{
+    "id": 1156440328,
+    "name": "#9393",
+    "edition": 9393,
+    "image": "https://ipfs.io/ipfs/QmcoL5gYRxfhhxzKjr5YgHE9Tg2nxzbKQyLFjXjRH8Wf1P",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664460554/9393.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Xihuachi"
+        },
+        {
+            "trait_type": "Country",
+            "value": "China"
+        },
+        {
+            "trait_type": "State",
+            "value": "Gansu"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 43338
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 35.8092
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 108.0121
+        }
+    ]
+}

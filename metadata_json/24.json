@@ -1,0 +1,37 @@
+{
+    "id": 1392347988,
+    "name": "#3942",
+    "edition": 3942,
+    "image": "https://ipfs.io/ipfs/QmUc2g5C1EvAP5sJEev7HmujY1BofFjwrGoRnxeNbDoY8M",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664473516/3942.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Omiyacho"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Japan"
+        },
+        {
+            "trait_type": "State",
+            "value": "Shizuoka"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Asia"
+        },
+        {
+            "trait_type": "Population",
+            "value": 127252
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 35.2222
+        },
+        {
+            "trait_type": "Longitude",
+            "value": 138.6214
+        }
+    ]
+}

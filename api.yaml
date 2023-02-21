@@ -1,4 +1,4 @@
-definitions:
+ definitions:
   securitySchemes:
     tokenauth:
       type: basic
@@ -7,17 +7,55 @@ definitions:
       in: header
     demouser:
       type: basic
- 
-
-  login:
+  #-------------------------------------------------------------------
+  #---------------------------ADMIN----------------------------------
+  #-------------------------------------------------------------------
+  signup:
     required:
+      - firstName
+      - lastName
+      - countryCode
+      - mobileNumber
       - email
       - password
     properties:
+      firstName:
+        type: string
+      lastName:
+        type: string
+      countryCode:
+        type: string
+      mobileNumber:
+        type: string
       email:
         type: string
       password:
-         type: string
+        type: string
+      deviceToken:
+        type: string
+
+        
+  verifyOTP:
+    required:
+      - email
+      - otp
+    properties:
+      email:
+        type: string
+      otp:
+        type: integer
+
+
+  resendOTP:
+    required:
+      - countryCode
+      - mobileNumber
+    properties:
+      countryCode:
+        type: string
+      mobileNumber:
+        type: string
+
 
   forgotPassword:
     required:
@@ -26,12 +64,59 @@ definitions:
       email:
         type: string
 
+
   resetPassword:
     required:
       - newPassword
     properties:
       newPassword:
         type: string
+        
+
+  loginWithWallet:
+    required:
+      - walletAddress
+    properties:
+      walletAddress:
+        type: string
+  
+
+  loginWithEmail:
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password: 
+        type: string
+          
+
+  socialLogin:
+    required:
+      - socialId
+      - socialType
+      - countryCode
+      - mobileNumber
+      - email
+    properties:
+      socialId:
+        type: string
+      socialType:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      countryCode:
+        type: string
+      mobileNumber:
+        type: string
+      email:
+        type: string
+      deviceToken:
+        type: string
+
 
   connectWallet:
     required:
@@ -40,16 +125,82 @@ definitions:
       walletAddress:
         type: string
 
-  blockUnblockUser:
-    required:
-      - _id
-      - status
+
+  updateProfile:
     properties:
-      _id:
+      userName:
         type: string
-      status:
+      name:
         type: string
-        description: ACTIVE/BLOCK
+      email: 
+        type: string
+      profilePic: 
+        type: string
+      coverPic: 
+        type: string
+      bio: 
+        type: string
+      customUrl: 
+        type: string
+      twitterUsername: 
+        type: string
+      personalSite: 
+        type: string
+    
+
+    
+
+  updateAdminProfile:
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      mobileNumber:
+        type: string
+      personalSite:
+        type: string
+      twitterUsername:
+        type: string
+      customUrl:
+        type: string       
+      bio:
+        type: string
+      coverPic:
+        type: string
+      profilePic:
+        type: string
+      userName:
+        type: string
+   
+     
+  changePassword:
+    required:
+      - oldPassword
+      - newPassword
+    properties:
+      oldPassword:
+        type: string
+      newPassword: 
+        type: string
+
+
+  createPayment:
+    required:
+      - cardNumber
+      - expMonth
+      - expYear
+      - cvc
+    properties:
+      cardNumber:
+        type: string
+      expMonth: 
+        type: string
+      expYear: 
+        type: string
+      cvc: 
+        type: string
+
 
   addStaticContent:
     required:
@@ -59,84 +210,131 @@ definitions:
     properties:
       type:
         type: string
-      title:
+      title: 
         type: string
-      description:
+      description: 
         type: string
 
-  editTemple:
+
+  editStaticContent:
     required:
       - _id
-    properties:
-      _id:
-        type: string
-      templeName:
-        type: string
-      templeLength:
-        type: string
-
-  changeMediaStatus:
-    required:
-      - _id
-      - status
-    properties:
-      _id:
-        type: string
-      status:
-        type: string
-        description: ACTIVE/BLOCK
-
-  addPractice:
-    required:
-      - name
+      - title
       - description
-      - circuitId
-      - fee
-      - laps
     properties:
-      name:
+      _id:
         type: string
-      description:
+      title: 
         type: string
-      circuitId:
+      description: 
         type: string
-      fee:
-        type: integer
-      laps:
-        type: integer
 
-  editPractice:
+
+
+
+
+  editFAQ:
+    required:
+      - _id
+      - question
+      - answer
+    properties:
+      _id:
+        type: string
+      question: 
+        type: string
+      answer: 
+        type: strings
+
+
+  cancelOrder:
     required:
       - _id
     properties:
       _id:
         type: string
-      name:
-        type: string
-      description:
-        type: string
-      circuitId:
-        type: string
-      fee:
-        type: integer
-      laps:
-        type: integer
 
-  buyPetstore:
+  cancelPhysicalOrder:
     required:
-      - petstoreId
-      - dogId
-      - dogProperties
+      - _id 
     properties:
-      petstoreId:
+      _id:
         type: string
-      dogId:
+      # quantity:
+      #   type: integer   
+
+
+  deleteUser:
+    required:
+      - _id
+    properties:
+      _id:
         type: string
-      dogProperties:
+
+
+  deleteCategory:
+    required:
+      - _id
+    properties:
+      _id:
         type: string
-          
+
+
+  deleteFAQ:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string 
+
+
+  blockUnblockUser:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+
+  activeDeactiveCategory:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string    
+
+  activeDeactiveMedia:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string    
+
+
+            
+
+
+  blockUnblockNft:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+
+
+  twoFactorAuthentication:
+    required:
+      - userId
+    properties:
+      userId:
+        type: string
+      code:
+        type: string
+
+        
 
   createNFT:
+    required:
+      - tokenId   
     properties:
       currentOwnerId: 
         type: string
@@ -148,6 +346,8 @@ definitions:
         type: string
       network:
         type: string
+      mediaFile: 
+        type: string
       coverImage: 
         type: string
       title: 
@@ -158,137 +358,798 @@ definitions:
         type: string
       properties: 
         type: string
+      alternativeTextForNFT: 
+        type: string
       mediaType: 
         type: string
       royalties:
         type: string
+      recipientWalletAddress:
+        type: string
+      recipientBackupWalletAddress:
+        type: string
+      itemCategory:
+        type: string
+      isGenerativeNft:
+        type: boolean 
+      physicalType: 
+        type: string 
+     
 
-  customizePractice:
+
+  createPhysicalNft:
     required:
-      - practiceId
-      - dogId
+      - tokenId   
     properties:
-      practiceId: 
+      currentOwnerId: 
         type: string
-      dogId:
+      collectionId:
         type: string
+      tokenId: 
+        type: string
+      tokenName: 
+        type: string
+      network:
+        type: string
+      mediaFile: 
+        type: string
+      coverImage: 
+        type: string
+      title: 
+        type: string
+      uri: 
+        type: string
+      description: 
+        type: string
+      properties: 
+        type: string
+      alternativeTextForNFT: 
+        type: string
+      mediaType: 
+        type: string
+      royalties:
+        type: string
+      recipientWalletAddress:
+        type: string
+      recipientBackupWalletAddress:
+        type: string
+      itemCategory:
+        type: string
+      isGenerativeNft:
+        type: boolean 
+      quantity:
+        type: integer  
+      physicalType: 
+        type: string 
+    
 
-  enterEvent:
-    required:
-      - eventId
-    properties:
-      eventId: 
-        type: string
-      dogId:
-        type: string
-
-  assignDriver:
-    required:
-      - eventId
-      - driverName
-    properties:
-      eventId: 
-        type: string
-      driverName:
-        type: string
-
-  editSocialLink:
+  editNFT:
     required:
       - _id
-      - link
+    properties:
+      _id:
+        type: string
+      tokenName: 
+        type: string
+      mediaFile: 
+        type: string
+      coverImage: 
+        type: string
+      itemCategory: 
+        type: array
+        items:
+          type: string
+      priceType: 
+        type: string
+      price: 
+        type: string
+      title: 
+        type: string
+      uri: 
+        type: string
+      description: 
+        type: string
+      royalties: 
+        type: string
+      properties: 
+        type: string
+      alternativeTextForNFT: 
+        type: string
+
+
+  editPhysicalNft:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+      tokenName: 
+        type: string
+      mediaFile: 
+        type: string
+      coverImage: 
+        type: string
+      itemCategory: 
+        type: array
+        items:
+          type: string
+      priceType: 
+        type: string
+      price: 
+        type: string
+      title: 
+        type: string
+      uri: 
+        type: string
+      description: 
+        type: string
+      royalties: 
+        type: string
+      properties: 
+        type: string
+      alternativeTextForNFT: 
+        type: string
+      quantity: 
+        type: integer   
+
+
+  createOrder:
+    required:
+      - nftId
+    properties:
+      nftId:
+        type: string
+      brandId:
+        type: string
+      title: 
+        type: string
+      details: 
+        type: string
+      time: 
+        type: string
+      startingBid: 
+        type: string
+      tokenName: 
+        type: string
+      description: 
+        type: string
+      royalties: 
+        type: string
+      startPrice: 
+        type: string
+      price: 
+        type: string
+      network:
+        type: string
+      coupounAddress: 
+        type: string
+      startTime: 
+        type: string
+      endTime: 
+        type: string
+      expiryTime: 
+        type: string
+      currentOwner: 
+        type: string
+      saleType:
+        type: string
+      mediaType: 
+        type: string
+
+  resalePhysicalOrder:
+    required:
+      - orderId
+    properties:
+      orderId:
+        type: string
+      title: 
+        type: string
+      details: 
+        type: string
+      time: 
+        type: string
+      startingBid: 
+        type: string
+      tokenName: 
+        type: string
+      description: 
+        type: string
+      royalties: 
+        type: string
+      startPrice: 
+        type: string
+      price: 
+        type: string
+      network:
+        type: string
+      coupounAddress: 
+        type: string
+      startTime: 
+        type: string
+      endTime: 
+        type: string
+      expiryTime: 
+        type: string
+      currentOwner: 
+        type: string
+      saleType:
+        type: string
+      mediaType: 
+        type: string 
+      quantity:
+        type: integer 
+
+
+
+        
+  
+  createPhysicalOrder:
+    required:
+      - nftId
+    properties:
+      nftId:
+        type: string
+      title: 
+        type: string
+      details: 
+        type: string
+      time: 
+        type: string
+      startingBid: 
+        type: string
+      tokenName: 
+        type: string
+      description: 
+        type: string
+      royalties: 
+        type: string
+      startPrice: 
+        type: string
+      price: 
+        type: string
+      network:
+        type: string
+      coupounAddress: 
+        type: string
+      startTime: 
+        type: string
+      endTime: 
+        type: string
+      expiryTime: 
+        type: string
+      currentOwner: 
+        type: string
+      saleType:
+        type: string
+      mediaType: 
+        type: string
+      quantity: 
+        type: integer   
+      physicalType: 
+        type: string   
+      brandId:
+        type: string
+         
+  
+
+  editOrder:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+      collectionId:
+        type: string
+      title: 
+        type: string
+      details: 
+        type: string
+      time: 
+        type: string
+      startingBid: 
+        type: string
+      tokenName: 
+        type: string
+      description: 
+        type: string
+      royalties: 
+        type: string
+      startPrice: 
+        type: string
+      price: 
+        type: string
+      coupounAddress: 
+        type: string
+      startTime: 
+        type: string
+      endTime: 
+        type: string
+      expiryTime: 
+        type: string
+      currentOwner: 
+        type: string
+      saleType: 
+        type: string
+      isResale:
+        type: boolean
+        default: false
+
+
+  editPhysicalOrder:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+      collectionId:
+        type: string
+      title: 
+        type: string
+      details: 
+        type: string
+      time: 
+        type: string
+      startingBid: 
+        type: string
+      tokenName: 
+        type: string
+      description: 
+        type: string
+      royalties: 
+        type: string
+      startPrice: 
+        type: string
+      price: 
+        type: string
+      coupounAddress: 
+        type: string
+      startTime: 
+        type: string
+      endTime: 
+        type: string
+      expiryTime: 
+        type: string
+      currentOwner: 
+        type: string
+      saleType: 
+        type: string
+      quantity: 
+        type: integer    
+      isResale:
+        type: boolean
+        default: false
+
+
+
+  createBid:
+    required:
+      - orderId
+    properties:
+      orderId:
+        type: string
+      name: 
+        type: string
+      bid: 
+        type: string
+      date: 
+        type: string
+      statues: 
+        type: string
+      price: 
+        type: integer
+
+  editBid:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+      name: 
+        type: string
+      bid: 
+        type: string
+      date: 
+        type: string
+      statues: 
+        type: string
+
+
+  createActivity:
+    properties:
+      title:
+        type: string
+      desctiption: 
+        type: string
+      type: 
+        type: string
+
+
+  editActivity:
+    required:
+      - _id
+    properties:
+      title:
+        type: string
+      desctiption: 
+        type: string
+      type: 
+        type: string
+
+
+  createHistory:
+    properties:
+      title:
+        type: string
+      desctiption: 
+        type: string
+      type: 
+        type: string
+
+
+  editHistory:
+    required:
+      - _id
+    properties:
+      title:
+        type: string
+      desctiption: 
+        type: string
+      type: 
+        type: string
+
+        
+  allListOrder:
+    properties:
+      search: 
+        type: string
+      min: 
+        type: integer
+      max: 
+        type: integer
+      page: 
+        type: integer
+      limit: 
+        type: integer
+      mostVisited: 
+        type: boolean
+      mostFavorited:
+        type: boolean
+      mostSold: 
+        type: boolean
+      oldest: 
+        type: boolean
+      newest: 
+        type: boolean
+      endingSoon:
+        type: boolean
+      recentalyMinted:
+        type: boolean
+      recentalyTraded:
+        type: boolean
+      price:
+        type: string
+      network: 
+        type: array
+        items:
+          type: string 
+      itemCategory: 
+        type: array
+        items:
+          type: string
+      collection: 
+        type: array
+        items:
+          type: string
+
+
+
+  showActivity:
     properties:
       _id: 
         type: string
-      link:
+      search: 
         type: string
+      page: 
+        type: integer
+      limit: 
+        type: integer
+      type: 
+        type: array
+        items:
+          type: string
 
-  groupChat:
+  
+  addAdmin:
     required:
-      - groupId
-      - message
-      - senderId
+      - email
+      - mobileNumber
     properties:
-      groupId:
+      firstName:
         type: string
-      senderId:
+      lastName:
+        type: string
+      email:
+        type: string
+      mobileNumber:
+        type: string
+      walletAddress: 
+        type: string
+      gender:
+        type: string
+      password: 
+        type: string
+      profilePic: 
+        type: string
+      permissions:
+        type: object
+        properties:
+          reportManagement:
+            type: boolean
+            default: false
+          userManagement:
+            type: boolean
+            default: false
+          subadminManagement:
+            type: boolean
+            default: false
+          staticContentManagement:
+            type: boolean
+            default: false
+          contactUsManagement:
+            type: boolean
+            default: false
+          notificationManagement:
+            type: boolean
+            default: false
+
+
+  editAdmin:
+    required:
+      - subAdminId
+    properties:
+      subAdminId:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      email:
+        type: string
+      mobileNumber:
+        type: string
+      gender:
+        type: string
+      password: 
+        type: string
+      profilePic: 
+        type: string
+      permissions:
+        type: object
+        properties:
+          reportManagement:
+            type: boolean
+            default: false
+          userManagement:
+            type: boolean
+            default: false
+          subadminManagement:
+            type: boolean
+            default: false
+          staticContentManagement:
+            type: boolean
+            default: false
+          contactUsManagement:
+            type: boolean
+            default: false
+          notificationManagement:
+            type: boolean
+            default: false
+
+  contactUs:
+    required:
+      - email
+    properties:
+      name:
+        type: string
+      email:
+        type: string
+      subject:
         type: string
       message:
         type: string
-      thumbnail:
-        type: string
-      mediaType:
-        type: string
-        description: text/file/emoji       
 
-  createPetItems:
+  
+  addPressMediaContent:
     required:
-      - name
-      - description
-      - price
-      - image
-      - availableQuantity
-      - categoryId
-      - productType
-      - attributes
+      - type
+      - title
     properties:
-      name:
+      type:
         type: string
-      description:
+      title: 
+        type: string   
+      image: 
+        type: string   
+      description: 
+        type: string    
+      url:
+        type: string  
+
+  
+
+
+  editPressMedia:
+    required:
+      - _id
+      - type
+      - title
+    properties:
+      _id:
         type: string
-      price:
+      type:
         type: string
-      image:
+      title: 
+        type: string   
+      image: 
+        type: string   
+      description: 
+        type: string  
+      url:
+        type: string     
+
+  deletePressMedia:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string      
+
+
+  editCollection:
+    required:
+      - _id
+    properties:
+      _id:
         type: string
-      categoryId:
+      displayName: 
         type: string
-      productType:
+      network: 
         type: string
-      attributes:
+      symbol: 
+        type: string
+      shortURL: 
+        type: string
+      collectionImage: 
+        type: string
+      bannerImage: 
+        type: string
+      description: 
+        type: string
+      categoryType: 
+        type: string
+      isPromoted:
+        type: boolean
+        default: false        
+
+
+  addKYC:
+    required:
+      - idNumber
+    properties:
+      firstName: 
+        type: string
+      lastName: 
+        type: string
+      mobileNumber: 
+        type: string
+      email: 
+        type: string
+      gender: 
+        type: string
+      address: 
+        type: string
+      country: 
+        type: string
+      countrycode: 
+        type: string
+      state: 
+        type: string
+      city: 
+        type: string
+      fullAddress: 
+        type: string
+      passport:
         type: object
         properties:
-          Aerodynamics:
+          idNumber:
             type: string
-          weight:
+          documentName:
             type: string
-          BMI:
+          frontImage:
             type: string
-          ShoeType:
+          backImage:
             type: string
-          Coat:
-            type: string
-          Tail:
-            type: string
-          Nurturing:
-            type: string
-      
-  editPetItems:
-    properties:
-      name:
-        type: string
-      description:
-        type: string
-      price:
-        type: string
-      image:
-        type: string
-      categoryId:
-        type: string
-      productType:
-        type: string
-      attributes:
+      national:
         type: object
         properties:
-          Aerodynamics:
+          idNumber:
             type: string
-          weight:
+          documentName:
             type: string
-          BMI:
+          frontImage:
             type: string
-          ShoeType:
+          backImage:
             type: string
-          Coat:
+      driving:
+        type: object
+        properties:
+          idNumber:
             type: string
-          Tail:
+          documentName:
             type: string
-          Nurturing:
+          frontImage:
             type: string
+          backImage:
+            type: string
+
+  editKYC:
+    properties:
+      firstName: 
+        type: string
+      lastName: 
+        type: string
+      mobileNumber: 
+        type: string
+      email: 
+        type: string
+      gender: 
+        type: string
+      address: 
+        type: string
+      country: 
+        type: string
+      countrycode: 
+        type: string
+      state: 
+        type: string
+      city: 
+        type: string
+      fullAddress: 
+        type: string
+      passport:
+        type: object
+        properties:
+          idNumber:
+            type: string
+          documentName:
+            type: string
+          frontImage:
+            type: string
+          backImage:
+            type: string
+      national:
+        type: object
+        properties:
+          idNumber:
+            type: string
+          documentName:
+            type: string
+          frontImage:
+            type: string
+          backImage:
+            type: string
+      driving:
+        type: object
+        properties:
+          idNumber:
+            type: string
+          documentName:
+            type: string
+          frontImage:
+            type: string
+          backImage:
+            type: string
+               
+
+
+        

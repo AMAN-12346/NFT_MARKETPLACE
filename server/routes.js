@@ -1,15 +1,18 @@
 //v7 imports
-import userV1 from "./api/v1/controllers/user/routes";
-import adminV1 from "./api/v1/controllers/admin/routes";
-// import staticV1 from "./api/v1/con/trollers/static/routes";
-// import petstoreV1 from "./api/v1/controllers/petstore/routes";
-// import circuitV1 from "./api/v1/controllers/circuit/routes";
-// import practiceV1 from "./api/v1/controllers/practice/routes";
-// import eventV1 from "./api/v1/controllers/event/routes";
-// import nftV1 from "./api/v1/controllers/nft/routes";
-import chatController from "./api/v1/controllers/chat/routes";
-// import group from "./api/v1/controllers/group/routes";
-import temple from "./api/v1/controllers/temple/routes";
+import user from "./api/v1/controllers/user/routes";
+import staticContent from "./api/v1/controllers/static/routes";
+import admin from './api/v1/controllers/admin/routes';
+import collection from './api/v1/controllers/collection/routes';
+import nft from './api/v1/controllers/nft/routes';
+import order from './api/v1/controllers/order/routes';
+import bid from './api/v1/controllers/bid/routes';
+import activity from './api/v1/controllers/activity/routes';
+import history from './api/v1/controllers/history/routes';
+import notification from './api/v1/controllers/notification/routes';
+import brand from './api/v1/controllers/brand/routes';
+import physicalNft from './api/v1/controllers/physicalNft/routes';
+import tracking from './api/v1/controllers/tracking/routes';
+
 
 
 /**
@@ -20,27 +23,24 @@ import temple from "./api/v1/controllers/temple/routes";
  */
 
 export default function routes(app) {
-	var unless = function (middleware, ...paths) {
-		return function (req, res, next) {
-			const pathCheck = paths.some((path) => path === req.path);
-			pathCheck ? next() : middleware(req, res, next);
-		};
-	};
 
-	/*------------v1 routes--------------------*/
-
-	app.use("/api/v1/user", userV1)
-	app.use("/api/v1/admin", adminV1)
-	// app.use("/api/v1/static", staticV1)
-	// app.use("/api/v1/petstore", petstoreV1)
-	// app.use("/api/v1/circuit", circuitV1)
-	// app.use("/api/v1/practice", practiceV1)
-	// app.use("/api/v1/event", eventV1)
-	// app.use("/api/v1/nft", nftV1)
-	app.use('/api/v1/chat',chatController)
-	// app.use('/api/v1/group', group);
-	app.use('/api/v1/temple', temple);
+  app.use("/api/v1/user", user);
+  app.use('/api/v1/static', staticContent);
+  app.use('/api/v1/admin', admin);
+  app.use('/api/v1/collection', collection);
+  app.use('/api/v1/nft', nft);
+  app.use('/api/v1/order', order);
+  app.use('/api/v1/bid', bid);
+  app.use('/api/v1/activity', activity);
+  app.use('/api/v1/history', history);
+  app.use('/api/v1/notification', notification);
+  app.use('/api/v1/brand', brand);
+  app.use('/api/v1/physicalNft', physicalNft);
+  app.use('/api/v1/tracking',tracking)
 
 
-	return app;
+
+
+
+  return app;
 }

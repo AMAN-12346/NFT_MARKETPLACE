@@ -1,4 +1,0 @@
-module.exports = Object.freeze({
-    P2P_TRANSACTION: 'P2P_TRANSACTION',
-    BANK_TRANSACTION:'BANK_TRANSACTION'
-});

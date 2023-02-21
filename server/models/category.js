@@ -1,68 +1,46 @@
 import Mongoose, { Schema } from "mongoose";
 import mongoosePaginate from "mongoose-paginate";
-import mongooseAggregatePaginate from "mongoose-aggregate-paginate";
 import status from '../enums/status';
+var mongooseAggregatePaginate = require("mongoose-aggregate-paginate");
+const schema = Mongoose.Schema;
+var categorySchema = new schema({
 
-const options = {
-    collection: "category",
-    timestamps: true,
-};
-
-const categoryModel = new Schema(
-    {
-        name: { type: String },
-        status: {
-            type: String,
-            enum: [status.ACTIVE, status.BLOCK, status.DELETE],
-            default: status.ACTIVE
-        }
+    categoryTitle: {
+        type: String
     },
-    options
+    categoryIcon: {
+        type: String,
+        default: ""
+    },
+    status: { type: String, default: status.ACTIVE }
+}, { timestamps: true }
 );
-categoryModel.plugin(mongoosePaginate);
-categoryModel.plugin(mongooseAggregatePaginate);
-module.exports = Mongoose.model("category", categoryModel)
-Mongoose.model("category", categoryModel).find({ status: status.ACTIVE }, (err, result) => {
+
+categorySchema.plugin(mongoosePaginate);
+categorySchema.plugin(mongooseAggregatePaginate);
+module.exports = Mongoose.model("category", categorySchema);
+
+
+Mongoose.model("category", categorySchema).findOne({}, (err, result) => {
     if (err) {
-        console.log("Default category error.", err);
+      console.log("DEFAULT category ERROR", err);
     }
-    else if (result.length != 0) {
-        console.log("Default categories.");
+    else if (result) {
+      console.log("Default category.");
     }
-    else{
-        let obj1={
-            name:"Aerodynamics"
-        }
-        let obj2={
-            name:"weight"
-        }
-        let obj3={
-            name:"BMI"
-        }
-        let obj4={
-            name:"Age"
-        }
-        let obj5={
-            name:"ShoeType"
-        }
-        let obj6={
-            name:"Coat"
-        }
-        let obj7={
-            name:"Tail"
-        }
-        let obj8={
-            name:"Nurturing"
-        }
-        Mongoose.model("category",categoryModel).create(obj1,obj2,obj3,obj4,obj5,obj6,obj7,obj8,(catErr,catResult)=>{
-            if(catErr){
-                console.log("Default category added error.", catErr);
-            }
-            else{
-                console.log("default category added.", catResult);
-            }
-        })
-    }
+    else {
+      let obj1 = {
+        categoryTitle:"Artwork",
+        categoryIcon: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1675954920/cacgecksyw7wyd0kux5q.png",
+      };
 
-});
-
+      Mongoose.model("category", categorySchema).create(obj1,  async (err1, result1) => {
+        if (err1) {
+          console.log("DEFAULT Collection  creation ERROR", err1);
+        } else {
+          console.log("DEFAULT Collection Created", result1);
+        }
+      });
+    }
+  });
+  

@@ -1,0 +1,37 @@
+{
+    "id": 1724178701,
+    "name": "#8196",
+    "edition": 8196,
+    "image": "https://ipfs.io/ipfs/QmXy7uauUmTYghE4k5Hvu3GGZBPbsbbeF7bV1fnSkZsa8x",
+    "cloud_image": "https://res.cloudinary.com/http-hovr-site/image/upload/v1664489510/8196.png",
+    "attributes": [
+        {
+            "trait_type": "City",
+            "value": "Pola de Siero"
+        },
+        {
+            "trait_type": "Country",
+            "value": "Spain"
+        },
+        {
+            "trait_type": "State",
+            "value": "Asturias"
+        },
+        {
+            "trait_type": "Continent",
+            "value": "Europe, Africa"
+        },
+        {
+            "trait_type": "Population",
+            "value": 51509
+        },
+        {
+            "trait_type": "Latitude",
+            "value": 43.3833
+        },
+        {
+            "trait_type": "Longitude",
+            "value": -5.65
+        }
+    ]
+}
