@@ -953,7 +953,7 @@
         type: string
       email:
         type: string
-      subject:
+      mobileNumber:
         type: string
       message:
         type: string
