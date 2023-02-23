@@ -2271,7 +2271,7 @@ export class userController {
         let validationSchema = {
             name: Joi.string().required(),
             email: Joi.string().email().required(),
-            subject: Joi.string().allow('').optional(),
+            mobileNumber: Joi.string().allow('').optional(),
             message: Joi.string().allow('').optional(),
         }
         try {
