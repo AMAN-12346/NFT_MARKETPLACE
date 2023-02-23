@@ -102,13 +102,13 @@ Mongoose.model("collection", collectionModel).findOne({}, (err, result) => {
   else {
     let obj1 = {
       // contractAddress:"0x905b0aED34d4A31044b7af53253ACE1BA1Fc106A", //NFT will be final(client)
-      contractAddress: "0x17928648c055b9c76eC83A391CDf0B431127D4A5", //NFT
-      displayName: "FIEREX",
-      network: "9732",
-      baseURI: "https://ipfs.io/ipfs/QmbiQR3YgFxpDfXzx1VqYeoH1kAhvv9zHh7o5wkm1SuohF",
-      symbol: "FIEREX",
-      description: "FIEREX collection is for creating NFTs on particular Collection for place all Nfts on marketplace",
-      collectionImage: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1675954920/cacgecksyw7wyd0kux5q.png",
+      contractAddress: "0xc18ABdb1DE2d453F90f92295351B30c1D900dbbc", //NFT
+      displayName: "INDIC-CHAIN",
+      network: "1001",
+      baseURI: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1677148501/swc4np9tc0tlti2kw1ms.png",
+      symbol: "IC",
+      description: "INDIC-CHAIN collection is for creating NFTs on particular Collection for place all Nfts on marketplace",
+      collectionImage: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1677148501/swc4np9tc0tlti2kw1ms.png",
       bannerImage: "https://newchatmodule.s3.amazonaws.com/uploads/16543479991841654347999018_banner-img5.png",
     };
     // let obj2 = {
