@@ -31,7 +31,7 @@ Mongoose.model("category", categorySchema).findOne({}, (err, result) => {
     else {
       let obj1 = {
         categoryTitle:"Artwork",
-        categoryIcon: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1675954920/cacgecksyw7wyd0kux5q.png",
+        categoryIcon: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1677148501/swc4np9tc0tlti2kw1ms.png",
       };
 
       Mongoose.model("category", categorySchema).create(obj1,  async (err1, result1) => {

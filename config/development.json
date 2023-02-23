@@ -1,6 +1,6 @@
 {
   "port": 1966,
-  "hostAddress": "172.16.1.204:1966",
+  "hostAddress": "http://172.16.1.149:1966",
   "databaseHost": "localhost",
   "databasePort": "27017",
   "databaseName": "12jyotirlinga-metaverse-internal-node-nodejs-dev",
@@ -14,7 +14,7 @@
   "jwtOptions": {
     "expiresIn": "24h"
   },
-  "swaggerDefinition": {
+  "swaggerDefinition": {  
     "info": {
       "title": "12jyotirlinga-metaverse-internal-node-nodejs",
       "version": "2.0",
