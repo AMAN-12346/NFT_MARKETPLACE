@@ -1,6 +1,6 @@
 {
   "port": 1966,
-  "hostAddress": "",
+  "hostAddress": "http://12-jyotirlingas.com",
   "databaseHost": "localhost",
   "databasePort": "27017",
   "databaseName": "12jyotirlinga-metaverse-internal-node-nodejs-stag",
