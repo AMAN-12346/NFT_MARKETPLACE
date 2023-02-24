@@ -747,6 +747,10 @@ export class adminController {
      *         description: categoryTitle
      *         in: formData
      *         required: false
+     *       - name: subject
+     *         description: subject
+     *         in: formData
+     *         required: false
      *       - name: categoryIcon
      *         description: categoryIcon
      *         in: formData
@@ -761,6 +765,7 @@ export class adminController {
         let validationSchema = {
             categoryTitle: Joi.string().required(),
             categoryIcon: Joi.string().optional(),
+            subject: Joi.string().optional(),
         }
         try {
             const validatedBody = await Joi.validate(req.body, validationSchema);
@@ -941,6 +946,10 @@ export class adminController {
     *         description: categoryTitle
     *         in: formData
     *         required: false
+    *       - name: subject
+    *         description: subject
+    *         in: formData
+    *         required: false
     *       - name: categoryId
     *         description: _id
     *         in: formData
@@ -959,7 +968,8 @@ export class adminController {
         const validationSchema = {
             categoryTitle: Joi.string().optional(),
             categoryIcon: Joi.string().optional(),
-            categoryId: Joi.string().optional()
+            categoryId: Joi.string().optional(),
+            subject: Joi.string().optional(),
         };
         try {
             var uniqueCheck, updated;

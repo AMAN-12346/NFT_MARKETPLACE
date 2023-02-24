@@ -12,6 +12,9 @@ var categorySchema = new schema({
         type: String,
         default: ""
     },
+    subject:{
+      type:String
+    },
     status: { type: String, default: status.ACTIVE }
 }, { timestamps: true }
 );
