@@ -768,20 +768,20 @@ export class adminController {
             subject: Joi.string().optional(),
         }
         try {
-            const validatedBody = await Joi.validate(req.body, validationSchema);
+            const validatedBody = await Joi.validate(req.body);
             let userResult = await findUser({ _id: req.userId, userType: { $in: userType.ADMIN } });
             if (!userResult) {
                 throw apiError.notFound(responseMessage.USER_NOT_FOUND);
             }
-            var category = await categoryCheck(validatedBody.categoryTitle);
+            var category = await categoryCheck(req.body.categoryTitle);
             if (category) {
                 throw apiError.notFound(responseMessage.CATEGORY_ALREADY_EXIST);
             }
             const { files } = req;
             if (files.length != 0) {
-                validatedBody.categoryIcon = await commonFunction.getImageUrl(files);
+                req.body.categoryIcon = await commonFunction.getImageUrl(files);
             }
-            var result = await createCategory(validatedBody)
+            var result = await createCategory(req.body)
             return res.json(new response(result, responseMessage.CATEGORY_CREATED));
         } catch (error) {
             return next(error);
@@ -973,7 +973,7 @@ export class adminController {
         };
         try {
             var uniqueCheck, updated;
-            let validatedBody = await Joi.validate(req.body, validationSchema);
+            let validatedBody = await Joi.validate(req.body);
 
             let userResult = await findUser({ _id: req.userId });
             if (!userResult) {

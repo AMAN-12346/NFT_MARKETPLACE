@@ -13,7 +13,8 @@ var categorySchema = new schema({
         default: ""
     },
     subject:{
-      type:String
+      type:String,
+      default:""
     },
     status: { type: String, default: status.ACTIVE }
 }, { timestamps: true }
