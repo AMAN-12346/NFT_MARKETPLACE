@@ -2269,7 +2269,7 @@ export class userController {
 
     async contactUs(req, res, next) {
         let validationSchema = {
-            name: Joi.string().required(),
+            name: Joi.string().required(),  
             email: Joi.string().email().required(),
             mobileNumber: Joi.string().allow('').optional(),
             message: Joi.string().allow('').optional(),
