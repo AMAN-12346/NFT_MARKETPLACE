@@ -48,13 +48,11 @@
 
   resendOTP:
     required:
-      - countryCode
-      - mobileNumber
+      - email:
     properties:
-      countryCode:
+      email:
         type: string
-      mobileNumber:
-        type: string
+
 
 
   forgotPassword:
@@ -90,7 +88,18 @@
         type: string
       password: 
         type: string
-          
+
+
+ 
+  login:
+    required:
+      - email
+      - password
+    properties:
+      email:
+        type: string
+      password:
+        type: string         
 
   socialLogin:
     required:
@@ -1151,5 +1160,16 @@
             type: string
                
 
-
+  register:
+    required:
+      - email
+    properties:
+      email:
+        type: string
+      firstName:
+        type: string
+      lastName:
+        type: string
+      password:
+        type: string
         

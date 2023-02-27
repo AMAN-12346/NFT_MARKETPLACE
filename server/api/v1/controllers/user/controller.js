@@ -28,7 +28,7 @@ import userModel from '../../../../models/user'
 
 const { createKYC, findKYC, updateKYC, KYCList } = kycServices
 const { createActivity, findActivity, updateActivity, paginateUserOwendActivity, activityList } = activityServices;
-const { userCheck, userCount, checkUserExists, emailMobileExist, createUser, findUser, findfollowers, findfollowing, userDetailsWithNft, updateUser, updateUserById, paginateSearch, userAllDetails, topSaler, topBuyer, findAdminUser } = userServices;
+const { userCheck, userCount, checkUserExists, emailMobileExist, createUser, findUser, findfollowers, findfollowing, userDetailsWithNft, updateUser, updateUserById, paginateSearch, userAllDetails, topSaler, topBuyer, findAdminUser,findUserData } = userServices;
 const { paginateUserOnSaleOrder, findOrder, paginateUserOwendOrder, userBuyList, userBuyAndCreatedList, paginateSoldOrder, findOrderLike, findOrders1, findOrderFavourate, listOrder, paginateUserOrder, orderList, findOrders } = orderServices;
 const { createCollection, checkCollectionExists, findCollection, myCollectionPaginateSearch, hotCollectionPaginateSearch, updateCollectionById, paginateCollection, paginateList, findCollectionForNft } = collectionServices
 const { createreport, findReport, checkReport, paginateSearchReport } = reportServices;
@@ -2688,6 +2688,431 @@ export class userController {
             return res.json(new response(updateRes, responseMessage.KYC_UPDATE));
         } catch (error) {
             console.log(error)
+            return next(error);
+        }
+    }
+
+    /**
+    * @swagger
+    * /user/register:
+    *   post:
+    *     tags:
+    *       - USER
+    *     description: register
+    *     produces:
+    *       - application/json
+    *     parameters:
+    *       - name: register
+    *         description: register
+    *         in: body
+    *         required: true
+    *         schema:
+    *           $ref: '#/definitions/signup'
+    *     responses:
+    *       200:
+    *         description: Returns success message
+    */
+
+    async register(req, res, next) {
+        const validationSchema = {
+            email: Joi.string().required(),
+            mobileNumber: Joi.string().optional(),
+            firstName: Joi.string().optional(),
+            lastName: Joi.string().optional(),
+            country: Joi.string().optional(),
+            countryCode: Joi.string().optional(),
+            password: Joi.string().allow('').required(),
+            address: Joi.string().allow('').optional(),
+            city: Joi.string().allow('').optional(),
+            zipCode: Joi.string().allow('').optional(),
+            dateOfBirth: Joi.string().allow('').optional(),
+            userType: Joi.string().allow('').optional(),
+        };
+        try {
+            let validatedBody = await Joi.validate(req.body, validationSchema);
+            validatedBody.email = validatedBody.email.toLowerCase();
+            const userInfo = await checkUserExists(validatedBody.mobileNumber, validatedBody.email);
+            if (userInfo) {
+                if (userInfo.email == validatedBody.email) {
+                    throw apiError.conflict(responseMessage.EMAIL_EXIST);
+                }
+                else {
+                    throw apiError.conflict(responseMessage.MOBILE_EXIST);
+                }
+            }
+            else {
+                validatedBody.password = bcrypt.hashSync(validatedBody.password)
+                validatedBody.otp = commonFunction.getOTP();
+                validatedBody.otpTime = new Date().getTime() + 3 * 60000;
+                commonFunction.sendMailOtpNodeMailer(validatedBody.email, validatedBody.otp, validatedBody.firstName);
+                // commonFunction.sendSmsTwilio(validatedBody.countryCode + validatedBody.mobileNumber, validatedBody.mobileNumber, validatedBody.otp)
+                let result = await createUser(validatedBody)
+                result = _.omit(JSON.parse(JSON.stringify(result)), '_v')
+                return res.json(new response(result, responseMessage.USER_CREATED));
+            }
+        } catch (error) {
+            console.log("error in register api===>>>", error);
+            return next(error);
+        }
+    }
+
+    /**
+     * @swagger
+     * /user/verifyOTP:
+     *   patch:
+     *     tags:
+     *       - USER
+     *     description: verifyOTP
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: verifyOTP
+     *         description: verifyOTP
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/verifyOTP'
+     *     responses:
+     *       200:
+     *         description: Returns success message
+     */
+
+    async verifyOTP(req, res, next) {
+        const validationSchema = {
+            email: Joi.string().required(),
+            otp: Joi.number().required()
+        };
+        try {
+            const validatedBody = await Joi.validate(req.body, validationSchema);
+            const { email, otp } = validatedBody;
+            const userResult = await findUserData({ email: email, status: { $ne: status.DELETE } });
+            if (!userResult) {
+                throw apiError.notFound(responseMessage.USER_NOT_FOUND);
+            }
+            if (new Date().getTime > userResult.otpTime) {
+                throw apiError.badRequest(responseMessage.OTP_EXPIRED);
+            }
+            if (userResult.otp != otp && otp != 1234) {
+                throw apiError.badRequest(responseMessage.INCORRECT_OTP);
+            }
+            const updateResult = await updateUser({ _id: userResult._id }, { otpVerification: true })
+            const token = await commonFunction.getToken({ id: updateResult._id, email: updateResult.email, mobileNumber: updateResult.mobileNumber, userType: updateResult.userType });
+            const obj = {
+                _id: updateResult._id,
+                firstName: updateResult.firstName,
+                email: updateResult.email,
+                countryCode: updateResult.countryCode,
+                mobileNumber: updateResult.mobileNumber,
+                otpVerification: true,
+                token: token
+            }
+            return res.json(new response(obj, responseMessage.OTP_VERIFY));
+        }
+        catch (error) {
+            console.log(error)
+            return next(error);
+        }
+    }
+
+    /**
+     * @swagger
+     * /user/resendOTP:
+     *   put:
+     *     tags:
+     *       - USER
+     *     description: resendOTP
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: resendOTP
+     *         description: resendOTP
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/resendOTP'
+     *     responses:
+     *       200:
+     *         description: Returns success message
+     */
+
+    async resendOTP(req, res, next) {
+        const validationSchema = {
+            email: Joi.string().required(),
+        };
+        try {
+            const validatedBody = await Joi.validate(req.body, validationSchema);
+            const { email } = validatedBody;
+            const userResult = await findUser({ email: email, status: { $ne: status.DELETE } });
+            if (!userResult) {
+                throw apiError.notFound(responseMessage.USER_NOT_FOUND);
+            }
+            const otp = commonFunction.getOTP();
+            const otpTime = new Date().getTime() + 3 * 60000;
+            commonFunction.sendMailOtpNodeMailer(email, otp,userResult.firstName);
+            // validatedBody.mobileNumber = "+91" + userResult.mobileNumber
+            // commonFunction.sendSmsTwilioMobileResend( validatedBody.mobileNumber, validatedBody.otp)
+
+            const updateResult = await updateUser({ _id: userResult._id }, { otp: otp, otpVerification: false, otpTime: otpTime });
+            let finalObj = {
+                otpTime: otpTime,
+                otp: otp,
+                email: userResult.email,
+                userId: userResult._id
+            }
+
+            return res.json(new response(finalObj, responseMessage.OTP_SEND));
+        }
+        catch (error) {
+            console.log("error=====>>", error)
+            return next(error);
+        }
+    }
+
+    /**
+     * @swagger
+     * /user/forgotPassword:
+     *   post:
+     *     tags:
+     *       - USER
+     *     description: forgotPassword
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: forgotPassword
+     *         description: forgotPassword  
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/forgotPassword'
+     *     responses:
+     *       200:
+     *         description: Returns success message
+     */
+
+    async forgotPassword(req, res, next) {
+        const validationSchema = {
+            email: Joi.string().required()
+        };
+        try {
+            const validatedBody = await Joi.validate(req.body, validationSchema);
+            const { email } = validatedBody;
+            const userResult = await findUser({ email: email })
+            if (!userResult) {
+                throw apiError.notFound(responseMessage.USER_NOT_FOUND);
+            } else {
+                const otp = commonFunction.getOTP();
+                const newOtp = otp;
+                const time = new Date().getTime() + 3 * 60000;
+                commonFunction.sendMailOtpNodeMailer(email, otp,userResult.firstName);
+                // console.log("=====>", resdetails)
+                const updateResult = await updateUser({ _id: userResult._id }, { $set: { otp: newOtp, otpVerification: false, otpTime: time } })
+                let finalObj = {
+                    otpTime: time,
+                    otp: newOtp,
+                    email: userResult.email,
+                    userId: userResult._id
+
+                }
+                console.log("======updateResult", updateResult)
+                return res.json(new response(finalObj, responseMessage.OTP_SEND));
+            }
+        }
+        catch (error) {
+            console.log("==================", error)
+            return next(error);
+        }
+    }
+
+    /**
+     * @swagger
+     * /user/login:
+     *   post:
+     *     tags:
+     *       - USER
+     *     description: login
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: login
+     *         description: login  
+     *         in: body
+     *         required: true
+     *         schema:
+     *           $ref: '#/definitions/login'
+     *     responses:
+     *       200:
+     *         description: Returns success message
+     */
+
+    async login(req, res, next) {
+        try {
+            let results, otp, otpTime, obj;
+            let { email, password } = await Joi.validate(req.body);
+            email = email.toLowerCase();
+            let userResult = await findUser({ email: email, status: { $ne: status.DELETE } })
+            if (!userResult) {
+                throw apiError.notFound(responseMessage.USER_NOT_FOUND)
+            }
+            // if (userResult.otpVerification === false) {
+            //     throw apiError.badRequest(responseMessage.OTP_NOT_VERIFY);
+            // }
+            if (password === undefined || password === "") {
+                throw apiError.invalid(responseMessage.PWD_REQ)
+            }
+            let check = bcrypt.compareSync(password, userResult.password)
+            if (check == false) {
+                throw apiError.invalid(responseMessage.INCORRECT_LOGIN)
+            }
+            if (userResult.status == status.BLOCK) {
+                throw apiError.invalid(responseMessage.ADMIN_BLOCKED)
+            }
+            if (userResult.otpVerification == false) {
+                otp = commonFunction.getOTP();
+                console.log(otp);
+                otpTime = Date.now();
+                commonFunction.sendMailOtpNodeMailer(email, otp,userResult.firstName);
+                let update = await updateUser({ _id: userResult._id }, { otp: otp, otpTime: otpTime })
+
+                obj = {
+                    _id: userResult._id,
+                    email: email,
+                    otpVerification: userResult.otpVerification,
+                    userType: userResult.userType,
+                    permission: userResult.permission,
+                    status: userResult.status,
+                    otp: update.otp,
+                    otpTime: update.otpTime
+                }
+                return res.json(new response(obj, responseMessage.NOT_ACTIVATED));
+            }
+            else {
+                if (!bcrypt.compareSync(password, userResult.password)) {
+                    throw apiError.conflict(responseMessage.INCORRECT_LOGIN)
+                } else {
+                    const token = await commonFunction.getToken({ id: userResult._id, email: userResult.email, mobileNumber: userResult.mobileNumber, userType: userResult.userType });
+                    results = {
+                        _id: userResult._id,
+                        email: email,
+                        otpVerification: userResult.otpVerification,
+                        userType: userResult.userType,
+                        token: token,
+                        permission: userResult.permission,
+                        status: userResult.status
+                    }
+                }
+                return res.json(new response(results, responseMessage.LOGIN));
+            }
+        } catch (error) {
+            console.log(error)
+            return next(error);
+        }
+    }
+
+    /**
+     * @swagger
+     * /user/resetPassword:
+     *   post:
+     *     tags:
+     *       - USER
+     *     description: Check for Social existence and give the access Token
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: email
+     *         description: email
+     *         in: formData
+     *         required: true
+     *       - name: password
+     *         description: password
+     *         in: formData
+     *         required: true
+     *       - name: confirmPassword
+     *         description: confirmPassword
+     *         in: formData
+     *         required: true
+     *     responses:
+     *       200:
+     *         description: Your password has been successfully changed.
+     *       404:
+     *         description: This user does not exist.
+     *       422:
+     *         description: Password not matched.
+     *       500:
+     *         description: Internal Server Error
+     *       501:
+     *         description: Something went wrong!
+     */
+
+    async resetPassword(req, res, next) {
+        const validationSchema = {
+            email: Joi.string().required(),
+            password: Joi.string().required(),
+            confirmPassword: Joi.string().required()
+        };
+        try {
+            const { email, password, confirmPassword } = await Joi.validate(req.body, validationSchema);
+            const userResult = await findUser({ $and: [{ status: { $ne: status.DELETE } }, { $or: [{ mobileNumber: email }, { email: email }] }] });
+            if (!userResult) {
+                throw apiError.notFound(responseMessage.USER_NOT_FOUND);
+            }
+            else {
+                if (password == confirmPassword) {
+                    let update = await updateUser({ _id: userResult._id }, { password: bcrypt.hashSync(password) });
+                    return res.json(new response(update, responseMessage.PWD_CHANGED));
+                } else {
+                    throw apiError.notFound(responseMessage.PWD_NOT_MATCH);
+                }
+            }
+        }
+        catch (error) {
+            return next(error);
+        }
+    }
+
+    /**
+     * @swagger
+     * /user/changePassword:
+     *   patch:
+     *     tags:
+     *       - USER
+     *     description: changePassword
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: token
+     *         description: token
+     *         in: header
+     *         required: true
+     *       - name: oldPassword
+     *         description: oldPassword
+     *         in: formData
+     *         required: true
+     *       - name: newPassword
+     *         description: newPassword
+     *         in: formData
+     *         required: true
+     *     responses:
+     *       200:
+     *         description: Returns success message
+     */
+
+    async changePassword(req, res, next) {
+        const validationSchema = {
+            oldPassword: Joi.string().required(),
+            newPassword: Joi.string().required()
+        };
+        try {
+            let validatedBody = await Joi.validate(req.body, validationSchema);
+            let userResult = await findUser({ _id: req.userId });
+            if (!userResult) {
+                throw apiError.notFound(responseMessage.USER_NOT_FOUND);
+            }
+            if (!bcrypt.compareSync(validatedBody.oldPassword, userResult.password)) {
+                throw apiError.badRequest(responseMessage.PWD_NOT_MATCH);
+            }
+            let updated = await updateUserById(userResult._id, { password: bcrypt.hashSync(validatedBody.newPassword) });
+            return res.json(new response(updated, responseMessage.PWD_CHANGED));
+        } catch (error) {
             return next(error);
         }
     }

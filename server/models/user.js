@@ -52,6 +52,7 @@ const userModel = new Schema(
     twitterUsername: { type: String },
     personalSite: { type: String },
     planType: { type: String, default: "Basic" },
+    address:{type:String},
     pass: { type: String },
     twoFAUrl: { type: String },
     base32: { type: String },
@@ -68,6 +69,8 @@ const userModel = new Schema(
     orderCount: { type: Number, default: 0 },
     topSaler: { type: Number, default: 0 },
     topBuyer: { type: Number, default: 0 },
+    userType: { type: String, default: userType.USER },
+    status: { type: String, default: status.ACTIVE },
     totalEarning: {
       type: Number,
       default: 0
@@ -179,6 +182,7 @@ Mongoose.model("user", userModel).find({ userType: userType.ADMIN }, async (err,
       walletAddress: "0xE8C852FB61a6350caa4a5301ECaEa4F5DF2eAdE9",
       dateOfBirth: "15022000",
       gender: "Male",
+      otpVerification: "true",
       password: bcrypt.hashSync("Mobiloitte@1"),
       address: "Saharanpur, UP, India",
       permissions: {

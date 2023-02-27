@@ -623,8 +623,10 @@ const userServices = {
       { $addFields: { followerCount: { $size: "$followerDetails" } } },
       { $sort: { createdAt: -1 } }
     ])
+  } ,
+  findUserData: async (query) => {
+    return await userModel.findOne(query);
   },
-
 }
 
 module.exports = { userServices };

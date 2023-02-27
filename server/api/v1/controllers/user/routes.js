@@ -46,9 +46,15 @@ export default Express.Router()
     .get('/topBuyers', controller.topBuyers)
     .post('/userRejectSubscription', controller.userRejectSubscription)
 
-
+    .post('/register', controller.register)
+    .patch('/verifyOTP', controller.verifyOTP)
+    .put('/resendOTP', controller.resendOTP)
+    .post('/forgotPassword', controller.forgotPassword)
+    .post('/login', controller.login)
+    .post('/resetPassword', controller.resetPassword)
 
     .use(auth.verifyToken)
+    .patch('/changePassword', controller.changePassword)
     .get('/profile', controller.profile)
     .get('/followUnfollow/:userId', controller.followUnfollow)
     .get('/followingList/:userId', controller.followingList)
@@ -58,7 +64,7 @@ export default Express.Router()
     .get('/viewWallet', controller.viewWallet)
     .put('/editWallet', controller.editWallet)
     .get('/listWallet', controller.listWallet)
-
+    
     .post('/createOrderReports', controller.createOrderReports)
     .get('/viewOrderReport', controller.viewOrderReport)
     .get('/listorderReportedByUser', controller.listorderReportedByUser)
