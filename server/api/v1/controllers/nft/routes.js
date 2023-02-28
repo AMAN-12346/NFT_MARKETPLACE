@@ -14,6 +14,8 @@ export default Express.Router()
     .get('/image/:number',controller.image)
     .get('/saveImage',controller.saveImage)
 
+
+
     .use(auth.verifyToken)
     .post('/ipfsUploadBase64', controller.ipfsUploadBase64)
     .get('/viewNFT/:_id', controller.viewNFT)
@@ -30,4 +32,6 @@ export default Express.Router()
     .post('/createNFT', controller.createNFT)
     .post('/ipfsUpload', controller.ipfsUpload)
     .post('/uploadImage',controller.uploadImage)
+
+
 
