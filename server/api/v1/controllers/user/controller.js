@@ -2729,7 +2729,7 @@ export class userController {
             userType: Joi.string().allow('').optional(),
         };
         try {
-            let validatedBody = await Joi.validate(req.body, validationSchema);
+            let validatedBody = await Joi.validate(req.body);
             validatedBody.email = validatedBody.email.toLowerCase();
             const userInfo = await checkUserExists(validatedBody.mobileNumber, validatedBody.email);
             if (userInfo) {
