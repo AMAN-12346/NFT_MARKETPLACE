@@ -115,12 +115,15 @@ module.exports = {
   //     // console.log(error)
   //     throw error;
   //   }
-
-
   // },
 
   getImageUrl: async (files) => {
-    var result = await cloudinary.v2.uploader.upload(files[0].pathF)
+    var result = await cloudinary.v2.uploader.upload(files[0].path)
+    return result.secure_url;
+  },
+
+  getImageUrl1: async (files) => {
+    var result = await cloudinary.v2.uploader.upload(files.path)
     return result.secure_url;
   },
 

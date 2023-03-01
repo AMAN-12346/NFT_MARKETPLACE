@@ -2729,7 +2729,7 @@ export class userController {
             userType: Joi.string().allow('').optional(),
         };
         try {
-            let validatedBody = await Joi.validate(req.body, validationSchema);
+            let validatedBody = await Joi.validate(req.body);
             validatedBody.email = validatedBody.email.toLowerCase();
             const userInfo = await checkUserExists(validatedBody.mobileNumber, validatedBody.email);
             if (userInfo) {
@@ -2744,6 +2744,7 @@ export class userController {
                 validatedBody.password = bcrypt.hashSync(validatedBody.password)
                 validatedBody.otp = commonFunction.getOTP();
                 validatedBody.otpTime = new Date().getTime() + 3 * 60000;
+                validatedBody.name = validatedBody.firstName;
                 commonFunction.sendMailOtpNodeMailer(validatedBody.email, validatedBody.otp, validatedBody.firstName);
                 // commonFunction.sendSmsTwilio(validatedBody.countryCode + validatedBody.mobileNumber, validatedBody.mobileNumber, validatedBody.otp)
                 let result = await createUser(validatedBody)
