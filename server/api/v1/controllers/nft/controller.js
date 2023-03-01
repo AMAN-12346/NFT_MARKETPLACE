@@ -151,7 +151,7 @@ export class nftController {
      *       - name: token
      *         description: token
      *         in: header
-     *         required: true
+     *         required: false
      *       - name: image
      *         description: image
      *         in: formData
@@ -163,7 +163,7 @@ export class nftController {
      */
 
     async uploadImage(req, res, next) {
-        try {
+        try {    
             var result = await commonFunction.getImageUrlforPDF_docx(req.files)
             return res.json(new response(result, responseMessage.DATA_FOUND));
         }
