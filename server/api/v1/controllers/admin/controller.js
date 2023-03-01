@@ -2464,7 +2464,7 @@ export class adminController {
          *       - name: approveReject
          *         description: approveReject
          *         in: formData
-         *         enum: ["REJECT","APPROVE"]
+         *         enum: ["REJECTED","APPROVED"]
          *         required: true
          *       - name: reason
          *         description: reason
@@ -2483,7 +2483,6 @@ export class adminController {
            
             try {
                 const validatedBody = await Joi.validate(req.body, validationSchema);
-                
                 let userResult = await findUser({ _id: req.userId, userType: userType.ADMIN });
                 if (!userResult) {
                     throw apiError.notFound(responseMessage.USER_NOT_FOUND);
@@ -2493,14 +2492,14 @@ export class adminController {
                     throw apiError.notFound(responseMessage.KYC_NOT_FOUND);
                 }
                 let userInfo = await findUser({ _id: kycInfo.userId });
-                // console.log(userInfo);
-                if (validatedBody.approveReject == kycApprove.APPROVE) {
-                    // let body = {
-                    //     name: kycInfo.userId.firstName,
-                    //     kycId: kycInfo._id,
-                    //     status: 'approved'
-                    // }
-                    // await commonFunction.sendMailContent(kycInfo.userId.email, body);
+                console.log(userInfo);
+                if (validatedBody.approveReject == "APPROVED") {
+                    let body = {
+                        name: kycInfo.userId.firstName,
+                        kycId: kycInfo._id,
+                        status: 'approved'
+                    }
+                    await commonFunction.sendMailKYCapprove(kycInfo.userId.email, body);
     
                     // let subject = 'KYC_STATUS'
                     // let bodys = `Your KYC is approved by ${userResult.firstName}`
@@ -2510,14 +2509,14 @@ export class adminController {
                     await updateUser({ _id: kycInfo.userId._id }, { kycVerified: true })
                     return res.json(new response(kycRes, responseMessage.KYC_APPROVE));
                 }
-                if (validatedBody.approveReject == kycApprove.REJECT) {
-                    // let body = {
-                    //     name: kycInfo.userId.firstName,
-                    //     kycId: kycInfo._id,
-                    //     reason: validatedBody.reason,
-                    //     status: 'rejected'
-                    // }
-                    // await commonFunction.sendMailContent(kycInfo.userId.email, body);
+                if (validatedBody.approveReject == "REJECTED") {
+                    let body = {
+                        name: kycInfo.userId.firstName,
+                        kycId: kycInfo._id,
+                        reason: validatedBody.reason,
+                        status: 'rejected'
+                    }
+                    await commonFunction.sendMailKYCreject(kycInfo.userId.email, body);
                     // let subject = 'KYC_STATUS.'
                     // let bodys = `Your KYC is rejected by ${userResult.firstName} with Reason: ${validatedBody.reason}`
                     // notification.promiseNotification(kycInfo.userId, userInfo.deviceToken, userInfo.deviceType, subject, bodys, "KYC_STATUS", kycInfo._id)

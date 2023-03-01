@@ -28,10 +28,10 @@ export default Express.Router()
     .get('/likeDislikeNft/:nftId', controller.likeDislikeNft)
 
     .use(upload.uploadFile)
+    .post('/uploadImage',controller.uploadImage)
     .post('/uploadNFT', controller.uploadNFT)
     .post('/createNFT', controller.createNFT)
     .post('/ipfsUpload', controller.ipfsUpload)
-    .post('/uploadImage',controller.uploadImage)
 
 
 
