@@ -359,7 +359,7 @@ export class brandController {
         }
     }
 
-    /**
+   /**
     * @swagger
     * /brand/updateBrand:
     *   put:

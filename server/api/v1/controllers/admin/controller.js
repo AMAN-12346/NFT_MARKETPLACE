@@ -18,11 +18,11 @@ import { brandServices } from '../../services/brand';
 import kycApprove from '../../../../enums/kyc'
 import { kycServices } from '../../services/kyc';
 
-const { createKYC, findKYC, updateKYC, KYCList, paginateSearchKYC, aggregateSearchKyc, KYCCount } = kycServices
+const { createKYC, findKYC, updateKYC, KYCList, paginateSearchKYC, aggregateSearchKyc, KYCCount, paginateSearchKYC2 } = kycServices
 
 
 const { createActivity, findActivity, updateActivity, paginateUserOwendActivity, paginateActivity, activityList } = activityServices;
-const { createSubscribe, findSubscribe, emailExist, updateSubscribe, subscriberList } = userSubscribeService;
+const { createSubscribe, findSubscribe, emailExist, updateSubscribe, subscriberList, paginateSearchSubscribe } = userSubscribeService;
 const { checkUserExists, userList, emailMobileExist, createUser, findUser, findAllUser, updateUser, updateUserById, paginateSearch, insertManyUser, listUser, subAdminList } = userServices;
 const { createCategory, categoryCheck, findCategory, updateCategory, paginateCategory, updateCategoryById } = categoryServices;
 const { createNft, nftCheck, findNft, updateNft, paginateNft, updateNftById, nftListWithAggregatePipeline, findAllNft } = nftServices;
@@ -1854,43 +1854,124 @@ export class adminController {
         }
     }
 
-    /**
-      * @swagger
-      * /admin/userSubscriberList:
-      *   get:
-      *     tags:
-      *       - ADMIN
-      *     description: shareContent
-      *     produces:
-      *       - application/json
-      *     parameters:
-      *       - name: token
-      *         description: token
-      *         in: header
-      *         required: true
-      *     responses:
-      *       200:
-      *         description: Returns success message
-      */
+    // /**
+    //   * @swagger
+    //   * /admin/userSubscriberList:
+    //   *   get:
+    //   *     tags:
+    //   *       - ADMIN
+    //   *     description: shareContent
+    //   *     produces:
+    //   *       - application/json
+    //   *     parameters:
+    //   *       - name: token
+    //   *         description: token
+    //   *         in: header
+    //   *         required: true
+    //   *     responses:
+    //   *       200:
+    //   *         description: Returns success message
+    //   */
 
-    async userSubscriberList(req, res, next) {
-        try {
-            var userRes = await findUser({ _id: req.userId })
-            if (!userRes) {
-                throw apiError.notFound([], responseMessage.USER_NOT_FOUND)
-            } else {
-                var subscribeRes = await subscriberList()
-                if (subscribeRes.length == 0) {
-                    throw apiError.notFound([], responseMessage.DATA_NOT_FOUND)
-                } else {
-                    return res.json(new response(subscribeRes, responseMessage.DATA_FOUND))
+    // async userSubscriberList(req, res, next) {
+    //     try {
+    //         var userRes = await findUser({ _id: req.userId })
+    //         if (!userRes) {
+    //             throw apiError.notFound([], responseMessage.USER_NOT_FOUND)
+    //         } else {
+    //             var subscribeRes = await subscriberList()
+    //             if (subscribeRes.length == 0) {
+    //                 throw apiError.notFound([], responseMessage.DATA_NOT_FOUND)
+    //             } else {
+    //                 return res.json(new response(subscribeRes, responseMessage.DATA_FOUND))
+    //             }
+    //         }
+    //     } catch (error) {
+    //         return next(error);
+    //     }
+
+    // }
+
+
+        /**
+     * @swagger
+     * /admin/userSubscriberList:
+     *   get:
+     *     tags:
+     *       - ADMIN
+     *     description: All subscribers list .
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: token
+     *         description: token
+     *         in: header
+     *         required: true
+     *       - name: fromDate
+     *         description: fromDate
+     *         in: formData
+     *         required: false
+     *       - name: toDate
+     *         description: toDate
+     *         in: formData
+     *         required: false
+     *       - name: page
+     *         description: page
+     *         in: formData
+     *         type: integer
+     *         required: false
+     *       - name: limit
+     *         description: limit
+     *         in: formData
+     *         type: integer
+     *         required: false
+     *       - name: search
+     *         description: search
+     *         in: formData
+     *         required: false
+     *       - name: userType
+     *         description: userType
+     *         in: formData
+     *         required: false
+     *       - name: SubscribeStatus
+     *         description: SubscribeStatus
+     *         in: formData
+     *         required: false
+     *       - name: country
+     *         description: country
+     *         in: formData
+     *         required: false
+     *     responses:
+     *       200:
+     *         description: Returns success message
+     */
+         async userSubscriberList(req, res, next) {
+            const validationSchema = {
+                fromDate: Joi.string().allow('').optional(),
+                toDate: Joi.string().allow('').optional(),
+                page: Joi.number().allow('').optional(),
+                limit: Joi.number().allow('').optional(),
+                search: Joi.string().allow('').optional(),
+                userType: Joi.string().allow('').optional(),
+                SubscribeStatus: Joi.string().allow('').optional(),
+                country: Joi.string().allow('').optional(),
+            };
+            try {
+                const validatedBody = await Joi.validate(req.body, validationSchema);
+                let userResult = await findUser({ _id: req.userId, userType:userType.ADMIN  });
+                // console.log(userResult,34);
+                if (!userResult) {
+                    throw apiError.notFound(responseMessage.USER_NOT_FOUND);
                 }
+                let dataResults = await paginateSearchSubscribe(validatedBody);
+                if (dataResults.docs.length == 0) {
+                    throw apiError.notFound(responseMessage.SUSCRIBE_NOT_FOUND)
+                }
+                return res.json(new response(dataResults, responseMessage.SUBSCRIBE_FOUND));
+            } catch (error) {
+                return next(error);
             }
-        } catch (error) {
-            return next(error);
         }
-
-    }
 
     /**
        * @swagger
@@ -2391,7 +2472,7 @@ export class adminController {
                 if (!userResult) {
                     throw apiError.notFound(responseMessage.USER_NOT_FOUND);
                 }
-                let dataResults = await paginateSearchKYC(validatedBody);
+                let dataResults = await paginateSearchKYC2(validatedBody);
                 if (dataResults.docs.length == 0) {
                     throw apiError.notFound(responseMessage.KYC_NOT_FOUND)
                 }
@@ -2500,7 +2581,7 @@ export class adminController {
                         status: 'approved'
                     }
                     await commonFunction.sendMailKYCapprove(kycInfo.userId.email, body);
-    
+                   
                     // let subject = 'KYC_STATUS'
                     // let bodys = `Your KYC is approved by ${userResult.firstName}`
                     // notification.promiseNotification(kycInfo.userId, userInfo.deviceToken, userInfo.deviceType, subject, bodys, "KYC_STATUS", kycInfo._id)

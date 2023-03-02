@@ -165,6 +165,8 @@ module.exports = {
 	TRACKING_ADD:"Tracking add Successfully.",
 	BRAND_ALREADY_EXIST:'This brand name is already in use.',
 	CONTRACT_ALREADY_EXIST:"Contract address already in use",
+	SUSCRIBE_NOT_FOUND:"SUBSCRIBE list not found",
+	SUBSCRIBE_FOUND:"SUBSCRIBE list found successfully",
 
 
 	SMS_BODY: (otp) => `Your verification code is  ${otp}`,
