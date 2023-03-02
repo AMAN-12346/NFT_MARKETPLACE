@@ -31,7 +31,7 @@ import fs from 'fs';
 import create from 'ipfs-http-client';
 import base64ToImage from 'base64-to-image';
 import doAsync from 'doasync';
-
+       
 let projectId = "2DtOJNEhvQEKm7jiEwfvPlfrpdn"
 let projectSecret = '24772f3d7228fe9980666ce5469023be'
 const auth =
@@ -779,6 +779,14 @@ export class nftController {
             nftObj["contractAddress"] = nftRes.contractAddress;
 
             let assignedRes = await createNft(nftObj);
+
+            let body = {
+                name: userResult.firstName,
+                nftId: nftRes._id,
+                receiverId: receiverRes._id,
+                title: "Send NFT"
+            }
+            await commonFunction.sendMailSendNFt(userResult.email, body);
             if (assignedRes) {
                 return res.json(new response(assignedRes, responseMessage.NFT_SENT));
             }
