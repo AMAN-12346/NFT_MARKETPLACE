@@ -101,55 +101,17 @@ Mongoose.model("collection", collectionModel).findOne({}, (err, result) => {
   }
   else {
     let obj1 = {
-      // contractAddress:"0x905b0aED34d4A31044b7af53253ACE1BA1Fc106A", //NFT will be final(client)
-      contractAddress: "0xc18ABdb1DE2d453F90f92295351B30c1D900dbbc", //NFT
+    
+      contractAddress: "0xc18ABdb1DE2d453F90f92295351B30c1D900dbbc", // NFT Token
       displayName: "INDIC-CHAIN",
-      network: "1001",
+      network: "100",
       baseURI: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1677148501/swc4np9tc0tlti2kw1ms.png",
       symbol: "IC",
-      description: "INDIC-CHAIN collection is for creating NFTs on particular Collection for place all Nfts on marketplace",
+      description: "INDIC-CHAIN collection is for creating NFTs on particular Collection for place all NFTs on marketplace",
       collectionImage: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1677148501/swc4np9tc0tlti2kw1ms.png",
       bannerImage: "https://newchatmodule.s3.amazonaws.com/uploads/16543479991841654347999018_banner-img5.png",
     };
-    // let obj2 = {
-    //   contractAddress: "0x8E2Fe35fad9649AF45E1b4D6D9f0C0ecc1Cf7D8e", // wiil be final
-    //   // contractAddress:"0x19E52c4E33dEDf1121165528712D9916f646b1eB", //for testng
-    //   displayName: "HovR Hooligans",
-    //   network: "9732",
-    //   baseURI: " https://ipfs.io/ipfs/QmT9KN1aJGh1YorE2bs7g1Ea37HivFktfEH1BhujZ9fw2z",
-    //   symbol: "H1",
-    //   description: "10,000 of the largest cities in the world that will be used in a P2E Metaverse game soon...",
-    //   collectionImage: "https://newchatmodule.s3.us-east-2.amazonaws.com/uploads/16506373163771650637316318_HovR.png",
-    //   bannerImage: "https://newchatmodule.s3.amazonaws.com/uploads/16543479991841654347999018_banner-img5.png"
-    // };
-
-    // let obj3 = {
-    //   contractAddress: "0x8F5D43CfDEE33336b0B4a4136CfB074B85bebafa", // for multiple Physical NFT
-    //   // contractAddress:"0x19E52c4E33dEDf1121165528712D9916f646b1eB", //for testng
-    //   displayName: "Brand_Multiple",
-    //   brandCollectionType: "MULTI_BRAND",
-    //   collectionType: "DEFAULT",
-    //   network: "9732",
-    //   baseURI: " https://ipfs.io/ipfs/QmT9KN1aJGh1YorE2bs7g1Ea37HivFktfEH1BhujZ9fw2z",
-    //   symbol: "H1",
-    //   description: "10,000 of the largest cities in the world that will be used in a P2E Metaverse game soon...",
-    //   collectionImage: "https://newchatmodule.s3.us-east-2.amazonaws.com/uploads/16506373163771650637316318_HovR.png",
-    //   bannerImage: "https://newchatmodule.s3.amazonaws.com/uploads/16543479991841654347999018_banner-img5.png"
-    // };
-
-    // let obj4 = {
-    //   // contractAddress:"0x8E2Fe35fad9649AF45E1b4D6D9f0C0ecc1Cf7D8e", // wiil be final
-    //   contractAddress: "0x20B7cbf582e793E23Ff41A385A331ae2FF2b5809", //for single physical NFT
-    //   displayName: "Brand_collection",
-    //   brandCollectionType: "SINGLE_BRAND",
-    //   collectionType: "DEFAULT",
-    //   network: "9732",
-    //   baseURI: " https://ipfs.io/ipfs/QmT9KN1aJGh1YorE2bs7g1Ea37HivFktfEH1BhujZ9fw2z",
-    //   symbol: "H2",
-    //   description: "10,000 of the largest cities in the world that will be used in a P2E Metaverse game soon...",
-    //   collectionImage: "https://newchatmodule.s3.us-east-2.amazonaws.com/uploads/16506373163771650637316318_HovR.png",
-    //   bannerImage: "https://newchatmodule.s3.amazonaws.com/uploads/16543479991841654347999018_banner-img5.png"
-    // };
+   
 
     Mongoose.model("collection", collectionModel).create(obj1, async (err1, result1) => {
       if (err1) {
