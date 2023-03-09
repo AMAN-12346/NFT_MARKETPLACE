@@ -1,6 +1,6 @@
 {
   "port": 1966,
-  "hostAddress": "http://172.16.6.48:1966",
+  "hostAddress": "http://172.16.2.248:1966",
   "databaseHost": "localhost",
   "databasePort": "27017",
   "databaseName": "12jyotirlinga-metaverse-internal-node-nodejs-dev",

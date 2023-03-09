@@ -28,7 +28,7 @@ import userModel from '../../../../models/user'
 
 const { createKYC, findKYC, updateKYC, KYCList } = kycServices
 const { createActivity, findActivity, updateActivity, paginateUserOwendActivity, activityList } = activityServices;
-const { userCheck, userCount, checkUserExists, emailMobileExist, createUser, findUser, findfollowers, findfollowing, userDetailsWithNft, updateUser, updateUserById, paginateSearch, userAllDetails, topSaler, topBuyer, findAdminUser,findUserData } = userServices;
+const { userCheck, userCount, checkUserExists, emailMobileExist, createUser, findUser, findfollowers, findfollowing, userDetailsWithNft, updateUser, updateUserById, paginateSearch, userAllDetails, topSaler, topBuyer, findAdminUser, findUserData } = userServices;
 const { paginateUserOnSaleOrder, findOrder, paginateUserOwendOrder, userBuyList, userBuyAndCreatedList, paginateSoldOrder, findOrderLike, findOrders1, findOrderFavourate, listOrder, paginateUserOrder, orderList, findOrders } = orderServices;
 const { createCollection, checkCollectionExists, findCollection, myCollectionPaginateSearch, hotCollectionPaginateSearch, updateCollectionById, paginateCollection, paginateList, findCollectionForNft } = collectionServices
 const { createreport, findReport, checkReport, paginateSearchReport } = reportServices;
@@ -454,23 +454,23 @@ export class userController {
     async profile(req, res, next) {
         try {
             let userResult = await findUser({ _id: req.userId });
-    
+
             if (!userResult) {
                 throw apiError.notFound(responseMessage.USER_NOT_FOUND);
             }
-            kycModel.find({userId:userResult._id}).then((kycData)=>{
+            kycModel.find({ userId: userResult._id }).then((kycData) => {
                 console.log(kycData)
-                if(kycData[0]===undefined){
+                if (kycData[0] === undefined) {
                     return res.json(new response(userResult, responseMessage.USER_DETAILS))
-                }else{
+                } else {
                     let result = { ...userResult._doc, approveStatus: kycData[0].approveStatus }
-                    if(result){
+                    if (result) {
                         return res.json(new response(result, responseMessage.USER_DETAILS));
                     }
                 }
-                
+
             })
-            
+
 
         } catch (error) {
             return next(error);
@@ -2269,7 +2269,7 @@ export class userController {
 
     async contactUs(req, res, next) {
         let validationSchema = {
-            name: Joi.string().required(),  
+            name: Joi.string().required(),
             email: Joi.string().email().required(),
             mobileNumber: Joi.string().allow('').optional(),
             message: Joi.string().allow('').optional(),
@@ -2492,20 +2492,20 @@ export class userController {
     *         description: Returns success message
     */
 
-     async addKYC(req, res, next) {
+    async addKYC(req, res, next) {
         const validationSchema = {
-            firstName:Joi.string().optional(),
-            lastName:Joi.string().optional(),
-            mobileNumber:Joi.string().optional(),
-            email:Joi.string().optional(),
-            gender:Joi.string().optional(),
-            address:Joi.string().optional(),
-            country:Joi.string().optional(),
-            countrycode:Joi.string().optional(),
-            state:Joi.string().optional(),
-            city:Joi.string().optional(),
-            city:Joi.string().optional(),
-            fullAddress:Joi.string().optional(),
+            firstName: Joi.string().optional(),
+            lastName: Joi.string().optional(),
+            mobileNumber: Joi.string().optional(),
+            email: Joi.string().optional(),
+            gender: Joi.string().optional(),
+            address: Joi.string().optional(),
+            country: Joi.string().optional(),
+            countrycode: Joi.string().optional(),
+            state: Joi.string().optional(),
+            city: Joi.string().optional(),
+            city: Joi.string().optional(),
+            fullAddress: Joi.string().optional(),
             passport: Joi.object({
                 idNumber: Joi.string().optional(),
                 documentName: Joi.string().optional(),
@@ -2579,7 +2579,7 @@ export class userController {
      *       200:
     *         description: Returns success message
      */
-     async viewKyc(req, res, next) {
+    async viewKyc(req, res, next) {
         try {
             let userResult = await findUser({ _id: req.userId, status: { $ne: status.DELETE } });
             if (!userResult) {
@@ -2626,18 +2626,18 @@ export class userController {
     */
     async editKYC(req, res, next) {
         const validationSchema = {
-            firstName:Joi.string().optional(),
-            lastName:Joi.string().optional(),
-            mobileNumber:Joi.string().optional(),
-            email:Joi.string().optional(),
-            gender:Joi.string().optional(),
-            address:Joi.string().optional(),
-            country:Joi.string().optional(),
-            countrycode:Joi.string().optional(),
-            state:Joi.string().optional(),
-            city:Joi.string().optional(),
-            city:Joi.string().optional(),
-            fullAddress:Joi.string().optional(),
+            firstName: Joi.string().optional(),
+            lastName: Joi.string().optional(),
+            mobileNumber: Joi.string().optional(),
+            email: Joi.string().optional(),
+            gender: Joi.string().optional(),
+            address: Joi.string().optional(),
+            country: Joi.string().optional(),
+            countrycode: Joi.string().optional(),
+            state: Joi.string().optional(),
+            city: Joi.string().optional(),
+            city: Joi.string().optional(),
+            fullAddress: Joi.string().optional(),
             passport: Joi.object({
                 idNumber: Joi.string().optional(),
                 documentName: Joi.string().optional(),
@@ -2732,25 +2732,38 @@ export class userController {
             let validatedBody = await Joi.validate(req.body);
             validatedBody.email = validatedBody.email.toLowerCase();
             const userInfo = await checkUserExists(validatedBody.mobileNumber, validatedBody.email);
+
             if (userInfo) {
-                if (userInfo.email == validatedBody.email) {
-                    throw apiError.conflict(responseMessage.EMAIL_EXIST);
-                }
-                else {
-                    throw apiError.conflict(responseMessage.MOBILE_EXIST);
+                if (userInfo.otpVerification == true) {
+                    if (userInfo.email == email) {
+                        if (userInfo.status === status.BLOCK) {
+                            throw apiError.conflict(responseMessage.BLOCK_USER_EMAIL_BY_ADMIN);
+                        } else {
+                            throw apiError.conflict(responseMessage.EMAIL_EXIST);
+                        }
+                    }
+                    if (userInfo.mobileNumber === mobileNumber && mobileNumber !== undefined && mobileNumber !== '') {
+                        if (userInfo.status === status.BLOCK) {
+                            throw apiError.conflict(responseMessage.BLOCK_USER_MOBILE_BY_ADMIN);
+                        } else {
+                            throw apiError.conflict(responseMessage.MOBILE_EXIST);
+                        }
+                    }
                 }
             }
-            else {
-                validatedBody.password = bcrypt.hashSync(validatedBody.password)
-                validatedBody.otp = commonFunction.getOTP();
-                validatedBody.otpTime = new Date().getTime() + 3 * 60000;
-                validatedBody.name = validatedBody.firstName;
-                commonFunction.sendMailOtpNodeMailer(validatedBody.email, validatedBody.otp, validatedBody.firstName);
-                // commonFunction.sendSmsTwilio(validatedBody.countryCode + validatedBody.mobileNumber, validatedBody.mobileNumber, validatedBody.otp)
-                let result = await createUser(validatedBody)
+            validatedBody.password = bcrypt.hashSync(validatedBody.password)
+            validatedBody.otp = commonFunction.getOTP();
+            validatedBody.otpTime = new Date().getTime() + 3 * 60000;
+            commonFunction.sendMailOtpNodeMailer(validatedBody.email, validatedBody.otp, validatedBody.firstName);
+            if (userInfo) {
+                let result = await updateUser({ _id: userInfo._id }, validatedBody)
                 result = _.omit(JSON.parse(JSON.stringify(result)), '_v')
                 return res.json(new response(result, responseMessage.USER_CREATED));
             }
+            let result = await createUser(validatedBody)
+            result = _.omit(JSON.parse(JSON.stringify(result)), '_v')
+            return res.json(new response(result, responseMessage.USER_CREATED));
+
         } catch (error) {
             console.log("error in register api===>>>", error);
             return next(error);
@@ -2849,7 +2862,7 @@ export class userController {
             }
             const otp = commonFunction.getOTP();
             const otpTime = new Date().getTime() + 3 * 60000;
-            commonFunction.sendMailOtpNodeMailer(email, otp,userResult.firstName);
+            commonFunction.sendMailOtpNodeMailer(email, otp, userResult.firstName);
             // validatedBody.mobileNumber = "+91" + userResult.mobileNumber
             // commonFunction.sendSmsTwilioMobileResend( validatedBody.mobileNumber, validatedBody.otp)
 
@@ -2904,7 +2917,7 @@ export class userController {
                 const otp = commonFunction.getOTP();
                 const newOtp = otp;
                 const time = new Date().getTime() + 3 * 60000;
-                commonFunction.sendMailOtpNodeMailer(email, otp,userResult.firstName);
+                commonFunction.sendMailOtpNodeMailer(email, otp, userResult.firstName);
                 // console.log("=====>", resdetails)
                 const updateResult = await updateUser({ _id: userResult._id }, { $set: { otp: newOtp, otpVerification: false, otpTime: time } })
                 let finalObj = {
@@ -2971,7 +2984,7 @@ export class userController {
                 otp = commonFunction.getOTP();
                 console.log(otp);
                 otpTime = Date.now();
-                commonFunction.sendMailOtpNodeMailer(email, otp,userResult.firstName);
+                commonFunction.sendMailOtpNodeMailer(email, otp, userResult.firstName);
                 let update = await updateUser({ _id: userResult._id }, { otp: otp, otpTime: otpTime })
 
                 obj = {

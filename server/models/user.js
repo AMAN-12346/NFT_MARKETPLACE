@@ -44,7 +44,7 @@ const userModel = new Schema(
     telegram: { type: String },
     instagram: { type: String },
     countryCode: { type: String },
-    mobileNumber: { type: String },
+    mobileNumber: { type: String ,default:"" },
     userType: { type: String, default: userType.USER },
     socialId: { type: String },
     socialType: { type: String },
