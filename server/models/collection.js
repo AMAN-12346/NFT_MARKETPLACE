@@ -102,7 +102,7 @@ Mongoose.model("collection", collectionModel).findOne({}, (err, result) => {
   else {
     let obj1 = {
     
-      contractAddress: "0xc18ABdb1DE2d453F90f92295351B30c1D900dbbc", // NFT Token
+      contractAddress: "0x320eD388E39D69fbaaF24bd1a779050CaCDb7CbB", // NFT Token
       displayName: "INDIC-CHAIN",
       network: "100",
       baseURI: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1677148501/swc4np9tc0tlti2kw1ms.png",
