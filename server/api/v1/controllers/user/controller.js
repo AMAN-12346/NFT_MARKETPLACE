@@ -2735,14 +2735,14 @@ export class userController {
 
             if (userInfo) {
                 if (userInfo.otpVerification == true) {
-                    if (userInfo.email == email) {
+                    if (userInfo.email == validatedBody.email) {
                         if (userInfo.status === status.BLOCK) {
                             throw apiError.conflict(responseMessage.BLOCK_USER_EMAIL_BY_ADMIN);
                         } else {
                             throw apiError.conflict(responseMessage.EMAIL_EXIST);
                         }
                     }
-                    if (userInfo.mobileNumber === mobileNumber && mobileNumber !== undefined && mobileNumber !== '') {
+                    if (userInfo.mobileNumber === validatedBody.mobileNumber && validatedBody.mobileNumber !== undefined && validatedBody.mobileNumber !== '') {
                         if (userInfo.status === status.BLOCK) {
                             throw apiError.conflict(responseMessage.BLOCK_USER_MOBILE_BY_ADMIN);
                         } else {
