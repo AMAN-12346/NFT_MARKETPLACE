@@ -3011,7 +3011,7 @@ module.exports = {
             <img align="center" border="0" src="https://res.cloudinary.com/dpiw7uxv9/image/upload/v1677656315/zikjloc2mzahzgfqycdk.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;max-width: 300px;" width="100%"/>
             
           </td>
-        </tr>
+        </tr>   
       </table>
       
             </td>
@@ -3301,9 +3301,9 @@ module.exports = {
           <tr>
             <td style="overflow-wrap:break-word;word-break:break-word;padding:10px 50px 20px;font-family:'Montserrat',sans-serif;" align="left">
               
-        <div style="color: #1b262c; line-height: 140%; text-align: center; word-wrap: break-word;"></br></br>
+        <div style="color: #1b262c; line-height: 140%; text-align: center; word-break: break-word; word-wrap: break-word; "></br></br>
           <p style="font-size: 14px; line-height: 140%;">Hi ${body.name}</p>
-      <p style="font-size: 14px; line-height: 140%;">Your KYC kycId: ${body.kycId} is ${body.status} by Admin with reason :${body.reason} on Plateform 12-jyotirlingas .</p></br>
+      <p style="font-size: 14px; line-height: 140%;  word-break: break-word;">Your KYC kycId: ${body.kycId} is ${body.status} by Admin with reason :${body.reason} on Plateform 12-jyotirlingas .</p></br>
      <p>Thanks and Regards, <br>
   <b>Team 12-jyotirlingas</b></p> 
         </div>
