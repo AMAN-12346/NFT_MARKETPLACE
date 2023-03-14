@@ -1178,7 +1178,7 @@ export class userController {
      *         type: integer
      *         required: false
      *       - name: type
-     *         description: type ?? Daily || Weekly || Monthly
+     *         description: type ?? today || Weekly || Monthly
      *         in: query
      *         required: false
      *     responses:
@@ -1246,7 +1246,7 @@ export class userController {
      *         type: integer
      *         required: false
      *       - name: type
-     *         description: type ?? Daily || Weekly || Monthly
+     *         description: type ?? today || Weekly || Monthly
      *         in: query
      *         required: false
      *     responses:
