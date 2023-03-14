@@ -2544,7 +2544,7 @@ export class userController {
             }
             if (validatedBody.national) {
                 validatedBody.national.frontImage = validatedBody.national.frontImage;
-                validatedBody.national.backImage = validatedBody.national.frontImage;
+                validatedBody.national.backImage = validatedBody.national.backImage;
             }
             if (validatedBody.driving) {
                 validatedBody.driving.frontImage = validatedBody.driving.frontImage;

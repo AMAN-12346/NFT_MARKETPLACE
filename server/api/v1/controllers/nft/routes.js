@@ -29,7 +29,7 @@ export default Express.Router()
 
     .use(upload.uploadFile)
     .post('/uploadImage',controller.uploadImage)
-    .post('/uploadNFT', controller.uploadNFT)
+    .post('/uploadNFT', controller.uploadNFT)   
     .post('/createNFT', controller.createNFT)
     .post('/ipfsUpload', controller.ipfsUpload)
 

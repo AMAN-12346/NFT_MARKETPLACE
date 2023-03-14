@@ -39,6 +39,9 @@ var bidModel = new Schema({
     contractAddress: {
         type: String
     },
+    walletAddress: {
+        type: String
+    },
     price: {
         type: Number,
     },
@@ -57,7 +60,7 @@ var bidModel = new Schema({
         type: String,
         enum: ["PENDING", "ACCEPTED", "CANCELLED"],
         default: "PENDING"
-    },
+    }   
 },
     options
 );
