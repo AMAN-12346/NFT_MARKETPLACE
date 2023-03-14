@@ -2854,7 +2854,7 @@ module.exports = {
             <td style="overflow-wrap:break-word;word-break:break-word;padding:18px;font-family:'Montserrat',sans-serif;" align="left">
               
         <div style="color: #ffffff; line-height: 150%; text-align: center; word-wrap: break-word;">
-          <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">2023 @12-jyotirlingas| All Rights Reserved.</span></p>
+          <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">2023 @12-jyotirlingas | All Rights Reserved.</span></p>
         </div>
       
             </td>
@@ -3102,7 +3102,7 @@ module.exports = {
             <td style="overflow-wrap:break-word;word-break:break-word;padding:18px;font-family:'Montserrat',sans-serif;" align="left">
               
         <div style="color: #ffffff; line-height: 150%; text-align: center; word-wrap: break-word;">
-          <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">2023 @12-jyotirlingas| All Rights Reserved</span></p>
+          <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">2023 @12-jyotirlingas | All Rights Reserved.</span></p>
         </div>
       
             </td>
@@ -3350,7 +3350,7 @@ module.exports = {
             <td style="overflow-wrap:break-word;word-break:break-word;padding:18px;font-family:'Montserrat',sans-serif;" align="left">
               
         <div style="color: #ffffff; line-height: 150%; text-align: center; word-wrap: break-word;">
-          <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">2023 @12-jyotirlingas| All Rights Reserved</span></p>
+          <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">2023 @12-jyotirlingas | All Rights Reserved.</span></p>
         </div>
       
             </td>
@@ -3597,7 +3597,7 @@ module.exports = {
             <td style="overflow-wrap:break-word;word-break:break-word;padding:18px;font-family:'Montserrat',sans-serif;" align="left">
               
         <div style="color: #ffffff; line-height: 150%; text-align: center; word-wrap: break-word;">
-          <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">2023 @12-jyotirlingas| All Rights Reserved</span></p>
+          <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 14px; line-height: 19.6px;">2023 @12-jyotirlingas | All Rights Reserved.</span></p>
         </div>
       
             </td>
