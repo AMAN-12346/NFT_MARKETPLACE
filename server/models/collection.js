@@ -103,13 +103,13 @@ Mongoose.model("collection", collectionModel).findOne({}, (err, result) => {
     let obj1 = {
     
       contractAddress: "0x320eD388E39D69fbaaF24bd1a779050CaCDb7CbB", // NFT Token
-      displayName: "INDIC-CHAIN",
+      displayName: "12jyotirlinga",
       network: "100",
       baseURI: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1677148501/swc4np9tc0tlti2kw1ms.png",
       symbol: "IC",
-      description: "INDIC-CHAIN collection is for creating NFTs on particular Collection for place all NFTs on marketplace",
+      description: "12jyotirlinga collection is for creating NFTs on particular Collection for place all NFTs on marketplace",
       collectionImage: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1677148501/swc4np9tc0tlti2kw1ms.png",
-      bannerImage: "https://newchatmodule.s3.amazonaws.com/uploads/16543479991841654347999018_banner-img5.png",
+      bannerImage: "https://res.cloudinary.com/dpiw7uxv9/image/upload/v1677148501/swc4np9tc0tlti2kw1ms.png",
     };
    
 

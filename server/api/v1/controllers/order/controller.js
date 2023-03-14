@@ -783,6 +783,8 @@ export class orderController {
      *               type: string
      *             tokenId:
      *               type: string
+     *             walletAddress:
+     *               type: string        
      *     responses:
      *       200:
      *         description: Congrats!! You successfully buy this NFT.
@@ -804,6 +806,7 @@ export class orderController {
             currentOwner: Joi.string().optional(),
             network: Joi.string().optional(),
             tokenId: Joi.string().optional(),
+            walletAddress: Joi.string().optional()
         }
         try {
             let validatedBody = await Joi.validate(req.body, validationSchema);
@@ -829,7 +832,7 @@ export class orderController {
                 let updateSalerRes = await updateUser({ _id: orderRes.userId }, { $inc: { topSaler: 1 } }, { new: true })
                 let getNftResult = await findNft({ _id: orderRes.nftId });
 
-                await updateNft({ _id: orderRes.nftId }, { $set: { isPlace: false, buyerUserId: userResult._id, currentOwnerId: validatedBody.currentOwner, tokenId: validatedBody.tokenId }, $addToSet: { ownerHistory: { userId: getNftResult.userId } } });
+                await updateNft({ _id: orderRes.nftId }, { $set: { isPlace: false, buyerUserId: userResult._id, currentOwnerId: validatedBody.currentOwner, tokenId: validatedBody.tokenId, WalletAddress: validatedBody.walletAddress }, $addToSet: { ownerHistory: { userId: getNftResult.userId } } });
                 delete validatedBody.sellerId;
                 delete validatedBody.userId;
                 delete validatedBody.isCreated;

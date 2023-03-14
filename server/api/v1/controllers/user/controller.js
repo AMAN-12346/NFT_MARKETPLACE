@@ -1178,7 +1178,7 @@ export class userController {
      *         type: integer
      *         required: false
      *       - name: type
-     *         description: type ?? Daily || Weekly || Monthly
+     *         description: type ?? today || Weekly || Monthly
      *         in: query
      *         required: false
      *     responses:
@@ -1246,7 +1246,7 @@ export class userController {
      *         type: integer
      *         required: false
      *       - name: type
-     *         description: type ?? Daily || Weekly || Monthly
+     *         description: type ?? today || Weekly || Monthly
      *         in: query
      *         required: false
      *     responses:
@@ -2544,7 +2544,7 @@ export class userController {
             }
             if (validatedBody.national) {
                 validatedBody.national.frontImage = validatedBody.national.frontImage;
-                validatedBody.national.backImage = validatedBody.national.frontImage;
+                validatedBody.national.backImage = validatedBody.national.backImage;
             }
             if (validatedBody.driving) {
                 validatedBody.driving.frontImage = validatedBody.driving.frontImage;

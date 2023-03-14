@@ -57,7 +57,9 @@ export class bidController {
             bid: Joi.number().optional(),
             price: Joi.number().optional(),
             date: Joi.string().optional(),
-            statues: Joi.string().optional()
+            statues: Joi.string().optional(),
+            walletAddress: Joi.string().optional()
+            
         }
         try {
             const validatedBody = await Joi.validate(req.body, validationSchema);
@@ -293,7 +295,7 @@ export class bidController {
             let updateOrder = await updateOrder({ _id: bidResult.orderId }, validatedBody);
             console.log("===updateOrder after accept bid", updateOrder)
 
-            await updateNft({ _id: bidResult.nftId }, { $set: { isPlace: false } });
+            await updateNft({ _id: bidResult.nftId }, { $set: { isPlace: false, WalletAddress: bidResult.walletAddress } });
             updateEarning(bidResult.nftId, bidResult.price);
             return res.json(new response(result, responseMessage.DETAILS_FETCHED));
         }

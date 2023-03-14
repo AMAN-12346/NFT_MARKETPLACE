@@ -163,7 +163,8 @@ export class nftController {
      */
 
     async uploadImage(req, res, next) {
-        try {    
+        try { 
+            console.log("req.files",req.files);   
             var result = await commonFunction.getImageUrlforPDF_docx(req.files)
             return res.json(new response(result, responseMessage.DATA_FOUND));
         }
@@ -276,7 +277,8 @@ export class nftController {
             alternativeTextForNFT: Joi.string().optional(),
             uri: Joi.string().optional(),
             isGenerativeNft: Joi.boolean().optional(),
-            physicalType: Joi.string().optional()
+            physicalType: Joi.string().optional(),
+            WalletAddress: Joi.string().optional(),
             // physicalNftImage: Joi.array().items(Joi.string()).optional(),
 
         }
