@@ -111,7 +111,7 @@ export class orderController {
 
             await updateCollection({ _id: nftCheck.collectionId }, { $inc: { placeNftCount: 1 } });
             await updateNft({ _id: nftCheck._id }, { isPlace: true }, { $inc: { treandingNftCount: 1 } });
-            await updateUser({ _id: userResult._id }, { $inc: { orderCount: 1, topSaler: 1 } });
+            await updateUser({ _id: userResult._id }, { $inc: { orderCount: 1 } });
             await createActivity({
                 userId: userResult._id,
                 collectionId: nftCheck.collectionId,
