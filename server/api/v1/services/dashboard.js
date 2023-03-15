@@ -6,6 +6,9 @@ import userModel from "../../../models/user";
 import bidModel from "../../../models/bid";
 
 import status from '../../../enums/status';
+import { bidServices } from '../services/bid';
+
+const { hotBidList } = bidServices;
 
 const dashboardServices = {
 
@@ -73,8 +76,10 @@ const dashboardServices = {
         const user = await userModel.count();
         const collection = await collectionModel.count();
         const order = await orderModel.count();
-        const bid = await bidModel.count();
-        return { user, collection, order, bid };
+        const bid = await hotBidList();
+        const bidCount = bid.length;
+
+        return { user, collection, order, bidCount };
 
     }
 
