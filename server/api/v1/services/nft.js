@@ -502,7 +502,9 @@ const nftServices = {
   collectionNftList: async (query) => {
     return await nftModel.find(query).sort({ createdAt: -1 }).populate([{ path: ' userId ' }]);
   },
-
+  multiUpdateData: async (query,updateObj) => {
+    return await nftModel.updateMany(query, updateObj, { multi: true });
+  },
 
 }
 

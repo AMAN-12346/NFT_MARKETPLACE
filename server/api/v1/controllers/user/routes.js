@@ -71,7 +71,9 @@ export default Express.Router()
 
     .get('/listUserToUserReport', controller.listUserToUserReport)
     .get('/viewReportUser', controller.viewReport)
+    .post('/importNft', controller.importNft)
 
+    
 
 
     .use(upload.uploadFile)

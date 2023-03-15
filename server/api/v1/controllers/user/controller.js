@@ -23,17 +23,18 @@ const { createContactUs } = contactUsServices;
 
 import kycApprove from '../../../../enums/kyc';
 import kycModel from '../../../../models/kyc'
+import nftModel from '../../../../models/nft'
 import { kycServices } from '../../services/kyc';
 import userModel from '../../../../models/user'
 
 const { createKYC, findKYC, updateKYC, KYCList } = kycServices
 const { createActivity, findActivity, updateActivity, paginateUserOwendActivity, activityList } = activityServices;
 const { userCheck, userCount, checkUserExists, emailMobileExist, createUser, findUser, findfollowers, findfollowing, userDetailsWithNft, updateUser, updateUserById, paginateSearch, userAllDetails, topSaler, topBuyer, findAdminUser, findUserData } = userServices;
-const { paginateUserOnSaleOrder, findOrder, paginateUserOwendOrder, userBuyList, userBuyAndCreatedList, paginateSoldOrder, findOrderLike, findOrders1, findOrderFavourate, listOrder, paginateUserOrder, orderList, findOrders } = orderServices;
+const { paginateUserOnSaleOrder, findOrder, paginateUserOwendOrder, userBuyList,updateOrder, userBuyAndCreatedList, paginateSoldOrder, findOrderLike, findOrders1, findOrderFavourate, listOrder, paginateUserOrder, orderList, findOrders } = orderServices;
 const { createCollection, checkCollectionExists, findCollection, myCollectionPaginateSearch, hotCollectionPaginateSearch, updateCollectionById, paginateCollection, paginateList, findCollectionForNft } = collectionServices
 const { createreport, findReport, checkReport, paginateSearchReport } = reportServices;
 const { createSubscribe, findSubscribe, emailExist, updateSubscribe, subscriberList } = userSubscribeService;
-const { createNft, nftCheck, findNft, findNftLike, updateNft, paginateNft, findAllNft, updateNftById } = nftServices;
+const { createNft, nftCheck, findNft, findNftLike, updateNft, paginateNft, findAllNft, updateNftById,multiUpdate } = nftServices;
 const { createHistory, findHistory, updateHistory, historyList, paginateShowNftHistory, paginateUserOwendHistory, paginateHistory } = historyServices;
 const { createWallet, findWallet, updateWallet, multiUpdateWallet, listWallet } = walletServices;
 const { dashboardList, dashboardCount } = dashboardServices;
@@ -3127,6 +3128,97 @@ export class userController {
             let updated = await updateUserById(userResult._id, { password: bcrypt.hashSync(validatedBody.newPassword) });
             return res.json(new response(updated, responseMessage.PWD_CHANGED));
         } catch (error) {
+            return next(error);
+        }
+    }
+
+    /**
+     * @swagger
+     * /user/importNft:
+     *   post:
+     *     tags:
+     *       - USER
+     *     description: importNft
+     *     produces:
+     *       - application/json
+     *     parameters:
+     *       - name: token
+     *         description: token
+     *         in: header
+     *         required: true
+     *       - name: tokenId
+     *         description: tokenId ? in array
+     *         in: formData
+     *         required: true
+     *     responses:
+     *       200:
+     *         description: Returns success message
+     */
+
+   async importNft(req, res,next) {
+        try {
+            const userData = await findUser({ _id: req.userId, status: "ACTIVE" })
+            console.log(userData);
+            if (!userData) {
+                throw apiError.notFound(responseMessage.USER_NOT_FOUND);
+            } else {
+                let nftFind = await findAllNft({ userId: userData._id, status: "ACTIVE" })
+                if (req.body.tokenId.length>0) {
+                    let nftRes = await findAllNft({ tokenId: { $in: req.body.tokenId }, status: "ACTIVE" })
+                    // console.log("nftRes", nftRes);
+                    if (nftRes.length > 0) {
+                        delete req.body.tokenId
+                        // req.body.thumbNails = await commonFunction.uploadImage(req.body.thumbNails);
+                        req.body.userId = userData._id;
+                        // req.body.walletAddress = userData.walletAddress;
+                        req.body.creatorId = userData._id;
+                        req.body.nftType = 'IMPORT'
+                        req.body.isTransafer = false
+                        req.body.isImport=true
+                        req.body.isPlace= false
+                        let nftIds = nftRes.map(o => o._id)
+                    console.log("nftIds", nftIds);
+                    const saved = await nftModel.updateMany({ _id: { $in: nftIds } }, { $set: req.body }, { multi: true });
+
+                        // const saved = await multiUpdate({ _id: { $in: nftIds } }, { $set: req.body }, { multi: true });
+                        req.body.price = 0;
+                        // req.body.isBuy = true;
+                        // req.body.walletAddress = userData.walletAddress;
+                        req.body.userId = userData._id;
+                        // req.body.currentOwner = userData.walletAddress;
+                        let saveRes = []
+                        for (let i = 0; i < nftRes.length; i++) {
+                            req.body.nftId = nftRes[i]._id;
+                            saveRes.push(updateOrder({ nftId: nftRes[i]._id }, { $set: req.body }, { new: true }))
+                        }
+                        let updateAll = await Promise.all(saveRes)
+                        if (nftFind.length > 0) {
+                            let nftRes1 = await findAllNft({ userId: userData._id, tokenId: { $in: req.body.tokenId }, status: "ACTIVE" })
+                            if (nftRes1.length > 0) {
+                                let nftFindIds = nftRes1.map(o => String(o._id))
+                                let nftMixMatch = nftFind.filter(o => nftFindIds.includes(String(o._id)) == false)
+                                if(nftMixMatch.length>0){
+                                    let nftmixIds = nftMixMatch.map(o => o._id)
+                                    let nftUpdate = await nftModel.updateMany({ _id: { $in: nftmixIds } }, { $unset: { userId: 1, creatorId: 1 } }, { multi: true })
+                                }
+                            }
+                        }
+                        return res.json(new response(updateAll, responseMessage.NFT_IMPORT));
+                    }
+                    throw apiError.notFound(responseMessage.DATA_NOT_FOUND);
+                }else{
+                    let nftRes1 = await nftModel.find({ userId: userData._id, tokenId: { $in: req.body.tokenId }, status: "ACTIVE" })
+                    if(nftRes1.length==0){
+                        return res.json(new response([], responseMessage.NFT_IMPORT));
+                    }
+                    let nftmixIds = nftRes1.map(o => o._id)
+                    let nftUpdate = await nftModel.updateMany({ _id: { $in: nftmixIds } }, { $unset: { userId: 1, creatorId: 1 } }, { multi: true })
+                    return res.json(new response(nftUpdate, responseMessage.NFT_IMPORT));
+                }
+            }
+        }
+        catch (error) {
+            console.log(error);
             return next(error);
         }
     }

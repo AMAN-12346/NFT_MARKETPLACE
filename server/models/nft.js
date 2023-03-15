@@ -180,7 +180,7 @@ var nftSchema = new schema(
             default: "PENDING"
         },
         nftType: {
-            type: String, enum: ["NORMAL", "PHYSICAL"],
+            type: String, enum: ["NORMAL", "PHYSICAL","IMPORT"],
             default: "NORMAL"
         },
         status: {
@@ -188,8 +188,8 @@ var nftSchema = new schema(
             enum: ["ACTIVE", "BLOCK", "DELETE"],
             default: "ACTIVE"
         },
-        
-
+        isImport:{type:Boolean,default:false},
+        isTransfer:{type:Boolean}
     },
     options
 );
