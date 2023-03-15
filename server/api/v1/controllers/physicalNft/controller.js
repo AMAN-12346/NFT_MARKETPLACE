@@ -719,25 +719,25 @@ export class physicalNftController {
                     desctiption: "Bad choice, I unfavourited it.",
                     type: "UNFAVOURITE"
                 })
-                return res.json(new response(updated, responseMessage.UNFOURATED));
+                return res.json(new response(updated, responseMessage.UNFOURITED));
             } else {
                 await createActivity({
                     userId: userResult._id,
                     nftId: nftResult._id,
-                    title: "FAVOURATE_NFT",
-                    desctiption: "Nice choice, I favourated it.",
-                    type: "FAVOURATE"
+                    title: "FAVOURITE_NFT",
+                    desctiption: "Nice choice, I favourited it.",
+                    type: "FAVOURITE"
                 })
                 await createHistory({
                     userId: userResult._id,
                     nftId: nftResult._id,
-                    title: "FAVOURATE_NFT",
-                    desctiption: "Nice choice, I favourated it.",
-                    type: "FAVOURATE"
+                    title: "FAVOURITE_NFT",
+                    desctiption: "Nice choice, I favourited it.",
+                    type: "FAVOURITE"
                 })
                 updated = await updateNft({ _id: nftResult._id }, { $addToSet: { favouriteUsers: userResult._id }, $inc: { favouriteCount: 1 } });
                 await updateUser({ _id: userResult._id }, { $addToSet: { favouriteOrder: nftResult._id } });
-                return res.json(new response(updated, responseMessage.FAVOURATED));
+                return res.json(new response(updated, responseMessage.FAVOURITED));
             }
         }
         catch (error) {

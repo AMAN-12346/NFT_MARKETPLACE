@@ -54,7 +54,7 @@ var nftSchema = new schema(
         mediaFile: {
             type: String
         },
-        physicalType: { type: String, enum: ["NORMAL", "SINGLE", "MULTIPLE"] },
+        physicalType: { type: String, enum: ["NORMAL", "SINGLE", "MULTIPLE"] },        
         physicalNftImage: [String],
         recipientWalletAddress: { type: String },
         WalletAddress: { type: String },
