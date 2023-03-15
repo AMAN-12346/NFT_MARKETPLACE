@@ -195,6 +195,7 @@ var orderSchema = new schema(
             enum: ["FIXED_PRICE", "TIMED_AUCTION", "BID", "NONE"],
             default: "NONE"
         },
+        isImport:{type:Boolean,default:false},    
         status: {
             type: String,
             enum: ["ACTIVE", "BLOCK", "DELETE", "CANCEL"],

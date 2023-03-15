@@ -167,6 +167,8 @@ module.exports = {
 	CONTRACT_ALREADY_EXIST:"Contract address already in use",
 	SUSCRIBE_NOT_FOUND:"SUBSCRIBE list not found",
 	SUBSCRIBE_FOUND:"SUBSCRIBE list found successfully",
+    NFT_IMPORT:"NFT Import successfully.",
+
 
 
 	SMS_BODY: (otp) => `Your verification code is  ${otp}`,
