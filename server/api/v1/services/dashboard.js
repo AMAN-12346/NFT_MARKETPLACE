@@ -74,10 +74,10 @@ const dashboardServices = {
     dashboardCount: async (query) => {
 
         const user = await userModel.count();
-        const collection = await collectionModel.count();
+        const collection = await collectionModel.count();  
         const order = await orderModel.count();
         const bid = await hotBidList();
-        const bidCount = bid.length;
+        const bidCount = bid.length;   
 
         return { user, collection, order, bidCount };
 

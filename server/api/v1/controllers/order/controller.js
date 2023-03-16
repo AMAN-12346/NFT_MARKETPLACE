@@ -828,7 +828,7 @@ export class orderController {
                 validatedBody.sellCount = orderRes.sellCount === undefined ? 0 : orderRes.sellCount + 1;
                 var buyResult = await createOrder(validatedBody);
 
-                let updateUserRes = await updateUser({ _id: userResult._id }, { $inc: { topBuyer: 1 } }, { new: true })
+                let updateUserRes = await updateUser({ _id: userResult._id },{ $set: { walletAddress: validatedBody.walletAddress } }, { $inc: { topBuyer: 1 } }, { new: true })
                 let updateSalerRes = await updateUser({ _id: orderRes.userId }, { $inc: { topSaler: 1 } }, { new: true })
                 let getNftResult = await findNft({ _id: orderRes.nftId });
 

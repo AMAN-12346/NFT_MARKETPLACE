@@ -236,7 +236,7 @@ export class userController {
      *         description: walletAddress
      *         in: formData
      *         required: true
-      *       - name: walletType
+     *       - name: walletType
      *         description: type ?? PRIMARY || SECONDARY 
      *         in: formData
      *         required: true
@@ -273,7 +273,7 @@ export class userController {
                 }
                 var finalRes = await createWallet(obj)
                 var result =  await updateUserById(userResult._id, { $set: validatedBody });
-                console.log("======>>>276",result)
+                console.log("======>>>",result)
                 return res.json(new response(finalRes, responseMessage.DATA_SAVED));
             }
         } catch (error) {
