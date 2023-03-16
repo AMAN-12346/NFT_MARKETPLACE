@@ -57,7 +57,7 @@ var nftSchema = new schema(
         physicalType: { type: String, enum: ["NORMAL", "SINGLE", "MULTIPLE"] },        
         physicalNftImage: [String],
         recipientWalletAddress: { type: String },
-        WalletAddress: { type: String },
+        walletAddress: { type: String },
         recipientBackupWalletAddress: { type: String },
 
         coverImage: {

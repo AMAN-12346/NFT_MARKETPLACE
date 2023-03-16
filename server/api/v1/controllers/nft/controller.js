@@ -1,6 +1,7 @@
 import Joi from "joi";
 import _ from "lodash";
 import config from "config";
+import mongoose from "mongoose";
 import apiError from '../../../../helper/apiError';
 import response from '../../../../../assets/response';
 import responseMessage from '../../../../../assets/responseMessage';
@@ -12,6 +13,7 @@ import { transactionServices } from '../../services/transaction';
 import { activityServices } from '../../services/activity';
 import { historyServices } from '../../services/history';
 import { metadataServices } from '../../services/metadata';
+import { userModel } from '../../../../models/user'
 const { createMetadata, findMetadata } = metadataServices;
 
 const { userCheck, findUser, findUserData, createUser, updateUser, updateUserById, userSubscriberList } = userServices;
@@ -278,7 +280,7 @@ export class nftController {
             uri: Joi.string().optional(),
             isGenerativeNft: Joi.boolean().optional(),
             physicalType: Joi.string().optional(),
-            WalletAddress: Joi.string().optional(),
+            walletAddress: Joi.string().required()
             // physicalNftImage: Joi.array().items(Joi.string()).optional(),
 
         }
@@ -354,6 +356,8 @@ export class nftController {
                     title: "Create a new nft ",
                     description: "A new nft has been created successfully."
                 }
+                let updated = await updateUserById(userResult._id, { $set: {walletAddress: validatedBody.walletAddress } })
+                console.log("===>>>>>>>>>",updated)
                 let history = await createHistory(historyRes);
                 let finalResult = _.omit(JSON.parse(JSON.stringify(result)), req.body.itemCategory == "private documents" ? 'uri' : []);
                 return res.json(new response(finalResult, responseMessage.ADD_NFT));
