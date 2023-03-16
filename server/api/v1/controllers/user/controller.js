@@ -237,7 +237,7 @@ export class userController {
      *         in: formData
      *         required: true
       *       - name: walletType
-     *         description: walletType
+     *         description: type ?? PRIMARY || SECONDARY 
      *         in: formData
      *         required: true
      *     responses:
@@ -272,6 +272,8 @@ export class userController {
                     walletType: req.body.walletType
                 }
                 var finalRes = await createWallet(obj)
+                var result =  await updateUserById(userResult._id, { $set: validatedBody });
+                console.log("======>>>276",result)
                 return res.json(new response(finalRes, responseMessage.DATA_SAVED));
             }
         } catch (error) {
