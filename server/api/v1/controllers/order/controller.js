@@ -96,7 +96,7 @@ export class orderController {
             if (!userResult) {
                 throw apiError.notFound(responseMessage.USER_NOT_FOUND);
             }
-            let nftCheck = await findNft({ _id: validatedBody.nftId, status: { $ne: status.DELETE } });
+            let nftCheck = await findNft({ _id: validatedBody.nftId, userId: userResult._id, status: { $ne: status.DELETE } });
             if (!nftCheck) {
                 throw apiError.notFound(responseMessage.NFT_NOT_FOUND);
             }
@@ -830,9 +830,10 @@ export class orderController {
 
                 let updateUserRes = await updateUser({ _id: userResult._id },{ $set: { walletAddress: validatedBody.walletAddress } }, { $inc: { topBuyer: 1 } }, { new: true })
                 let updateSalerRes = await updateUser({ _id: orderRes.userId }, { $inc: { topSaler: 1 } }, { new: true })
-                let getNftResult = await findNft({ _id: orderRes.nftId });
+                let getNftResult = await findNft({ _id: orderRes.nftId },{ $set: { walletAddress: validatedBody.walletAddress } },{ new: true });
 
-                await updateNft({ _id: orderRes.nftId }, { $set: { isPlace: false, buyerUserId: userResult._id, currentOwnerId: validatedBody.currentOwner, tokenId: validatedBody.tokenId, WalletAddress: validatedBody.walletAddress }, $addToSet: { ownerHistory: { userId: getNftResult.userId } } });
+                let nftRes = await updateNft({ _id: orderRes.nftId }, { $set: { isPlace: false, buyerUserId: userResult._id, currentOwnerId: validatedBody.currentOwner, tokenId: validatedBody.tokenId, walletAddress: validatedBody.walletAddress }, $addToSet: { ownerHistory: { userId: getNftResult.userId } } });
+             
                 delete validatedBody.sellerId;
                 delete validatedBody.userId;
                 delete validatedBody.isCreated;

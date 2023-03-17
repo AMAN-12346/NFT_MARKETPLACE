@@ -13,7 +13,7 @@ import { transactionServices } from '../../services/transaction';
 import { activityServices } from '../../services/activity';
 import { historyServices } from '../../services/history';
 import { metadataServices } from '../../services/metadata';
-import { userModel } from '../../../../models/user'
+import { userModel } from '../../../../models/user';
 const { createMetadata, findMetadata } = metadataServices;
 
 const { userCheck, findUser, findUserData, createUser, updateUser, updateUserById, userSubscriberList } = userServices;
@@ -23,7 +23,9 @@ const { createNotification, findNotification, updateNotification, multiUpdateNot
 const { createTransaction, findTransaction, updateTransaction, transactionList } = transactionServices;
 const { createActivity, findActivity, updateActivity, paginateUserOwendActivity, paginateActivity, activityList } = activityServices;
 const { createHistory, findHistory, updateHistory, historyList, paginateShowNftHistory, paginateUserOwendHistory, paginateHistory } = historyServices;
+
 import { imageServices } from '../../services/image';
+
 const { createImage, findImage } = imageServices;
 
 import commonFunction from '../../../../helper/util';
@@ -326,7 +328,7 @@ export class nftController {
                         if (brandRes.brandId) req.body.nftType = "PHYSICAL"
                     }
                 }
-
+  
                 // var imageResult = []
                 // if (req.body.physicalNftImage.length!= 0) {
                 //     for (let i = 0; i < req.body.physicalNftImage.length; i++) {
@@ -357,7 +359,7 @@ export class nftController {
                     description: "A new nft has been created successfully."
                 }
                 let updated = await updateUserById(userResult._id, { $set: {walletAddress: validatedBody.walletAddress } })
-                console.log("===>>>>>>>>>",updated)
+                
                 let history = await createHistory(historyRes);
                 let finalResult = _.omit(JSON.parse(JSON.stringify(result)), req.body.itemCategory == "private documents" ? 'uri' : []);
                 return res.json(new response(finalResult, responseMessage.ADD_NFT));
