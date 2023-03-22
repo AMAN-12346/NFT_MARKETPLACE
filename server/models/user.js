@@ -37,7 +37,7 @@ const userModel = new Schema(
     email: { type: String },
     profilePic: { type: String , default:""},
     coverPic: { type: String, default:""},    
-    bio: { type: String },
+    bio: { type: String },      
     facebook: { type: String },
     twitter: { type: String },
     youtube: { type: String },

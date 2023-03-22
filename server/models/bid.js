@@ -21,7 +21,7 @@ var bidModel = new Schema({
         type: schema.Types.ObjectId,
         ref: 'order'
     },
-    nftId: {
+    nftId: {   
         type: schema.Types.ObjectId,
         ref: 'nft'
     },
@@ -34,7 +34,7 @@ var bidModel = new Schema({
         ref: 'user'
     },
     tokenId: {
-        type: String,
+        type: String,  
     },
     contractAddress: {
         type: String

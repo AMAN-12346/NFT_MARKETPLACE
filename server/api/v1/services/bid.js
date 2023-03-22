@@ -26,10 +26,7 @@ const bidServices = {
     },
 
     hotBidList: async (query) => {
-        return await bidModel.find(query).populate([{
-            path: 'orderId',
-            match: { endTime: { $gte: new Date().getTime() },status:{$ne:status.CANCEL} },
-            populate: { path: 'nftId userId collectionId' }
+        return await bidModel.find(query).populate([{path: 'orderId',populate: { path: 'nftId userId collectionId' }
         },
         { path: 'collectionId' }]).sort({ bidCount: -1 });
     },

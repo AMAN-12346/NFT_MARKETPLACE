@@ -833,7 +833,7 @@ export class orderController {
                 let getNftResult = await findNft({ _id: orderRes.nftId },{ $set: { walletAddress: validatedBody.walletAddress } },{ new: true });
 
                 let nftRes = await updateNft({ _id: orderRes.nftId }, { $set: { isPlace: false, buyerUserId: userResult._id, currentOwnerId: validatedBody.currentOwner, tokenId: validatedBody.tokenId, walletAddress: validatedBody.walletAddress }, $addToSet: { ownerHistory: { userId: getNftResult.userId } } });
-             
+            
                 delete validatedBody.sellerId;
                 delete validatedBody.userId;
                 delete validatedBody.isCreated;

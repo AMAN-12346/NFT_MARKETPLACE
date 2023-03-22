@@ -362,7 +362,7 @@ export class userController {
       *       404:
       *         description: User not found/data not found.
       */
-
+    
     async editWallet(req, res, next) {
         const validationSchema = {
             walletId: Joi.string().required(),
@@ -2757,6 +2757,7 @@ export class userController {
             validatedBody.password = bcrypt.hashSync(validatedBody.password)
             validatedBody.otp = commonFunction.getOTP();
             validatedBody.otpTime = new Date().getTime() + 3 * 60000;
+            validatedBody.name = validatedBody.firstName + ' ' + validatedBody.lastName;            
             commonFunction.sendMailOtpNodeMailer(validatedBody.email, validatedBody.otp, validatedBody.firstName);
             if (userInfo) {
                 let result = await updateUser({ _id: userInfo._id }, validatedBody)
