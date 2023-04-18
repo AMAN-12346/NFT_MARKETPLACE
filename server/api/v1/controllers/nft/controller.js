@@ -1100,26 +1100,8 @@ export class nftController {
             return next(error);
         }
     }
-
-    /**
- * @swagger
- * /nft/saveImage:
- *   get:
- *     tags:
- *       - saveImage
- *     description: saveImage
- *     produces:
- *       - application/json
- *     responses:
- *       200:
- *         description: Data found successfully.
- *       501:
- *         description: Something went wrong.
- *       404:
- *         description: User not found.
- *       409:
- *         description: Nft not found.
- */
+      var result = await createNft(req.body);
+      return res.json(new response(result, responseMessage.NFT_ADDED));
 
     async saveImage(req, res, next) {
         try {
